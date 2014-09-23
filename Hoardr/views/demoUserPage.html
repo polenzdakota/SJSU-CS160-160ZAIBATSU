@@ -8,24 +8,25 @@
     <link rel="stylesheet" type="text/css" href="../css/basicstyle.css">
     </head>
     <body>
-        <h4>Demo User Page</h4>
-		<h3>Your Collection</h3>
-		<table border = "1" style="width:75%">
-			<tr>
-				<td>Card1</td>
-				<td>Attribute</td>		
-				<td>Cost</td>
-			</tr>
-			<tr>
-				<td>Card2</td>
-				<td>Attribute</td>		
-				<td>Cost</td>
-			</tr>
-			<tr>
-				<td>Card3</td>
-				<td>Attribute</td>		
-				<td>Cost</td>
-			</tr>
-			</table>
+        <table class="top" summary="Top Page Navigation">
+        <tr>
+            <td width="80%"><h1>User Page<h1></td>
+            <td>
+            <form action="../views/demoHomePage.html" method="GET" >
+            <button name="Logout" type="submit">Logout</button>
+            </form></td>
+        </tr>
+        </table>
+        <h3>Your Collection</h3>
+        <table border = "1" height = 700 style="width:90%">
+            <tr>
+                <td rowspan="2" width = 20%>Selected Card Stats go here</td>
+                <td>Card Collection</td>        
+                <td rowspan="2" width = 20%>Deck Stats go here</td>
+            </tr>
+            <tr>
+                <td>Deck Cards</td>
+            </tr>
+            </table>
     </body>
 </html>
