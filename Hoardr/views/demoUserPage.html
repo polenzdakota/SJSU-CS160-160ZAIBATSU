@@ -6,6 +6,20 @@
     <meta name="descriprion" content="Magic The Gathering Card Manager" />
     <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
     <link rel="stylesheet" type="text/css" href="../css/basicstyle.css">
+    
+    <script>
+			var mouseOverCard = function(card) {
+				var bigCardPic = document.getElementById("bigCardPic");
+				if (!card) {
+					bigCardPic.style.visibility = 'hidden';
+				} else {
+					bigCardPic.style.visibility = 'visible';
+					bigCardPic.src = card.src;
+				}
+				
+			};
+    </script>
+    
     </head>
     <body>
         <table class="top" summary="Top Page Navigation">
@@ -22,19 +36,19 @@
         <button name="Logout" type="submit">Add Card</button>
         <table border = "1" height = 700 style="width:90%">
             <tr>
-                <td rowspan="2" width = 20%>Selected Card Stats go here</td>
+                <td rowspan="2" width = 20%><img id="bigCardPic" style ="width: 300px;height:420px;visibility:hidden"/></td>
                 <td>
-                <img src="../CardPictures/AzamiLadyOfScrolls.jpg" style ="width: 113px;height:155.5px">
-                <img src="../CardPictures/GraveBetrayal.jpg" style ="width: 113px;height:155.5px">
-                <img src="../CardPictures/CruelSadist.jpg" style ="width: 113px;height:155.5px">
-                <img src="../CardPictures/AxebaneGuardian.jpg" style ="width: 113px;height:155.5px">
+                <img src="../CardPictures/AzamiLadyOfScrolls.jpg" style ="width:113px;height:155.5px" onmouseover="mouseOverCard(this)" onmouseleave="mouseOverCard(null)">
+                <img src="../CardPictures/GraveBetrayal.jpg" style ="width: 113px;height:155.5px" onmouseover="mouseOverCard(this)" onmouseleave="mouseOverCard(null)">
+                <img src="../CardPictures/CruelSadist.jpg" style ="width: 113px;height:155.5px" onmouseover="mouseOverCard(this)" onmouseleave="mouseOverCard(null)">
+                <img src="../CardPictures/AxebaneGuardian.jpg" style ="width: 113px;height:155.5px" onmouseover="mouseOverCard(this)" onmouseleave="mouseOverCard(null)">
                 </td>
                 <td rowspan="2" width = 20%>Deck Stats go here</td>
             </tr>
             <tr>
                 <td>
-                <img src="../CardPictures/AzamiLadyOfScrolls.jpg" style ="width: 113px;height:155.5px">
-                <img src="../CardPictures/GraveBetrayal.jpg" style ="width: 113px;height:155.5px">
+                <img src="../CardPictures/AzamiLadyOfScrolls.jpg" style ="width: 113px;height:155.5px" onmouseover="mouseOverCard(this)" onmouseleave="mouseOverCard(null)">
+                <img src="../CardPictures/GraveBetrayal.jpg" style ="width: 113px;height:155.5px" onmouseover="mouseOverCard(this)" onmouseleave="mouseOverCard(null)">
                 </td>
             </tr>
             </table>
