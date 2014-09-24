@@ -6,8 +6,9 @@ h1 {
 }
 
 h3 {
-    width: 700px;
-    float: top;
+    width: 500px;
+	position: relative;
+    float: center;
     padding-top: 10px;
     padding-left: 10px;
 }
@@ -15,7 +16,7 @@ h3 {
 table.top {
     width: 100%;
     height: 10%;
-    background-color: rgb(128,128,128);
+    background-color: #5E9EFF;
     border: 10px solid black;
 
 }
@@ -26,9 +27,8 @@ td.login {
 
 div.sidebar {
     line-height:30px;
-    background-color: rgb(128,128,128);
-    border-style: solid;
-    border-left: 10px;
+    background-color: #5E9EFF;
+    border: 5px double black;
     border-left-color: black;
     height:800px;
     width:150px;
