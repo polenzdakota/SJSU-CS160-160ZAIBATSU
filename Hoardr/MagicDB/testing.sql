@@ -12,8 +12,7 @@ SELECT * FROM COLLECTION_LINK;
 #Query will return Card_name of all the instances of that card in the users collection
 Select Card_Name, COLLECTION1.LIBRARY_ID from Users,COLLECTION1,LIBRARY where LIBRARY.LIBRARY_ID = COLLECTION1.LIBRARY_ID and Username ='Chris is dumb'; 
 
-
-Select Username,count(Deck_ID) from Users,DECK where USERS.USER_ID=Deck.USER_ID; #count how many decks a particular user has
+Select Username,count(COLLECTION_ID) from Users,DECK where USERS.USER_ID=Deck.USER_ID; #count how many cards are in the deck
 
 SELECT order_id,product_name,qty FROM orders
 INTO OUTFILE '/tmp/orders.txt'

@@ -1,2 +1,3 @@
-Username	count(Deck_ID)
-"Chris is dumb"	2
+DECK_ID	USER_ID	COLLECTION_ID
+20	1	123
+21	1	223
