@@ -1,3 +1,2 @@
-DECK_ID	USER_ID	COLLECTION_ID
-20	1	123
-21	1	223
+Username	count(COLLECTION_ID)
+"Chris is dumb"	2
