@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2014-08-31" view-index="0" gantt-divider-location="460" resource-divider-location="300" version="2.0" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2014-10-27" view-index="0" gantt-divider-location="460" resource-divider-location="300" version="2.0" locale="en_US">
     <description/>
-    <view zooming-state="default:4" id="gantt-chart">
+    <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Name" width="51" order="0"/>
         <field id="tpd4" name="Begin date" width="24" order="1"/>
         <field id="tpd5" name="End date" width="24" order="2"/>
@@ -69,7 +69,7 @@
                 </task>
             </task>
         </task>
-        <task id="24" name="Coding" meeting="false" start="2014-09-29" duration="39" complete="0" expand="true">
+        <task id="24" name="Coding" meeting="false" start="2014-09-29" duration="52" complete="7" expand="true">
             <task id="25" name="Phase 1" meeting="false" start="2014-09-29" duration="14" complete="0" expand="true">
                 <task id="26" name="JSP - Home/User/Pages" color="#8cb6ce" meeting="false" start="2014-09-29" duration="4" complete="0" expand="true">
                     <depend id="27" type="2" difference="0" hardness="Strong"/>
@@ -83,33 +83,38 @@
                 </task>
                 <task id="29" name="Complete Iteration 1" color="#ff3333" meeting="true" start="2014-10-17" duration="0" complete="0" expand="true"/>
             </task>
-            <task id="34" name="Phase 2" meeting="false" start="2014-10-17" duration="15" complete="0" expand="true">
-                <task id="35" name="JSP" color="#8cb6ce" meeting="false" start="2014-10-17" duration="5" complete="0" expand="true">
+            <task id="34" name="Phase 2" meeting="false" start="2014-10-17" duration="17" complete="0" expand="true">
+                <task id="35" name="JSP" color="#8cb6ce" meeting="false" start="2014-10-17" duration="7" complete="0" expand="true">
                     <depend id="36" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="36" name="Servletts/JavaBean" color="#8cb6ce" meeting="false" start="2014-10-24" duration="5" complete="0" expand="true">
+                <task id="36" name="Servletts/JavaBean" color="#8cb6ce" meeting="false" start="2014-10-28" duration="5" complete="0" expand="true">
                     <depend id="37" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="37" name="Collection, Deck" meeting="false" start="2014-10-31" duration="5" complete="0" expand="true">
+                <task id="37" name="Collection, Deck" meeting="false" start="2014-11-04" duration="5" complete="0" expand="true">
                     <depend id="38" type="2" difference="0" hardness="Strong"/>
+                    <depend id="44" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="38" name="Complete Iteration 2" color="#ff0033" meeting="true" start="2014-11-07" duration="0" complete="0" expand="true">
+                <task id="44" name="Design Review" color="#8cb6ce" meeting="true" start="2014-11-11" duration="0" complete="0" expand="true"/>
+                <task id="38" name="Complete Iteration 2" color="#ff0033" meeting="true" start="2014-11-11" duration="0" complete="0" expand="true">
                     <depend id="40" type="2" difference="0" hardness="Strong"/>
                 </task>
             </task>
-            <task id="39" name="Phase 3" meeting="false" start="2014-11-07" duration="10" complete="0" expand="true">
-                <task id="40" name="JSP" color="#8cb6ce" meeting="false" start="2014-11-07" duration="2" complete="0" expand="true">
+            <task id="39" name="Phase 3" meeting="false" start="2014-11-11" duration="14" complete="30" expand="true">
+                <task id="40" name="JSP" color="#8cb6ce" meeting="false" start="2014-11-11" duration="3" complete="0" expand="true">
                     <depend id="41" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="41" name="Servletts/JavaBeans" color="#8cb6ce" meeting="false" start="2014-11-11" duration="5" complete="0" expand="true">
+                <task id="41" name="Servletts/JavaBeans" color="#8cb6ce" meeting="false" start="2014-11-14" duration="5" complete="0" expand="true">
                     <depend id="42" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="42" name="Review Database Tables" color="#8cb6ce" meeting="false" start="2014-11-18" duration="3" complete="0" expand="true">
+                <task id="42" name="Review Database Tables" color="#8cb6ce" meeting="false" start="2014-11-21" duration="6" complete="100" expand="true">
                     <depend id="43" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="43" name="Completion 3" color="#ff0033" meeting="true" start="2014-11-21" duration="0" complete="0" expand="true"/>
+            </task>
+            <task id="43" name="Completion 3(Review/Debug)" color="#ccccff" meeting="false" start="2014-12-01" duration="7" complete="0" expand="true">
+                <depend id="45" type="2" difference="0" hardness="Strong"/>
             </task>
         </task>
+        <task id="45" name="Project Demo" color="#8cb6ce" meeting="true" start="2014-12-10" duration="0" complete="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Dekota" function="Default:0" contacts="" phone=""/>
@@ -171,9 +176,9 @@
         <displaycolumn property-id="tpd9" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd1" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="236" visible="true"/>
-        <displaycolumn property-id="tpd4" order="1" width="110" visible="true"/>
-        <displaycolumn property-id="tpd5" order="2" width="110" visible="true"/>
+        <displaycolumn property-id="tpd3" order="0" width="228" visible="true"/>
+        <displaycolumn property-id="tpd4" order="1" width="107" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="106" visible="true"/>
     </taskdisplaycolumns>
     <previous/>
     <roles roleset-name="Default"/>
