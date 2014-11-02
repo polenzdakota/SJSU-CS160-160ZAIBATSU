@@ -28,7 +28,7 @@ for (cardAttrib in cardsJSON) {
 	}
 	var text = 'NULL';
 	if (card.text) {
-		text = text.replace(/'/g, "\\'");
+		text = card.text.replace(/'/g, "\\'");
 		text = text.replace(/"/g, '\\"');
 		text = text.replace(/\n/g, "\\n");
 		text = '"' + text + '"';
