@@ -3,7 +3,11 @@ var cardid = 0;
 
 for (cardAttrib in cardsJSON) {
 	var card = cardsJSON[cardAttrib];
-	var name = '"' + card.name + '"';
+	var name = card.name;
+	name = name.replace(/'/g, "\\'");
+	name = name.replace(/"/g, '\\"');
+	name = '"' + name + '"';
+	
 	var cost = 'NULL';
 	if (card.manaCost) {
 		cost = '"' + cost + '"';
