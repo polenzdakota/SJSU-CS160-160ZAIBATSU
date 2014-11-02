@@ -10,7 +10,7 @@ for (cardAttrib in cardsJSON) {
 	
 	var cost = 'NULL';
 	if (card.manaCost) {
-		cost = '"' + cost + '"';
+		cost = '"' + card.manaCost + '"';
 	}
 	var cmc = 'NULL';
 	if (card.cmc) {
