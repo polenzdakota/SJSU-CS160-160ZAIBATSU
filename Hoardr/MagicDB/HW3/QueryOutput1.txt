@@ -1,0 +1,6 @@
+Card_Name	LIBRARY_ID
+"Abzan Banner"	123
+"Abzan Banner"	123
+"Abzan Banner"	123
+Shatters	223
+Hooters	444
