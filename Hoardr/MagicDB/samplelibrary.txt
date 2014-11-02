@@ -1,7 +1,0 @@
-555	Abzan Ascendancy	When Abzan Ascendancy enters the battlefield,	Enchantment	5
-666	Crippling Chilld	ature token with flying onto the battlefield.	Enchantment	5
-123	Abzan Banner	When Abzan Ascendancy enters the battlefield, put a +1/+1 counter on each creature you control.Whenever	Instant	5
-444	Hooters	testing field	Instant	5
-223	Shatters	When Abzan Ascendancy enters the battlefield, put a +1/+1 counter on each creature you control.Whenever	Instant	5
-999	Throttle	When Abzan Ascendancy enters the battlefield, put a +1/+1 counter on each creature you control.Whenever	Instant	5
-333	DakotaTron	You win	Instant	500
