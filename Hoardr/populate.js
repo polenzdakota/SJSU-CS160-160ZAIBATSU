@@ -12,10 +12,8 @@ for (cardAttrib in cardsJSON) {
 	if (card.manaCost) {
 		cost = '"' + card.manaCost + '"';
 	}
-	var cmc = 'NULL';
-	if (card.cmc) {
-		cmc = '"' + card.cmc + '"';
-	}
+	cmc = card.cmc || 0;
+	
 	var supertypes = 'NULL';
 	if (card.supertypes) {
 		supertypes = '"' + card.supertypes.join(",") + '"';
