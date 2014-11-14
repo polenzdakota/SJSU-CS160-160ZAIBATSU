@@ -52,21 +52,21 @@
   			<div class="hello-world">
   				<div class="single-card-image">
    				 	<a href="#" class="cardpicture">
-   				 		<img src="Images/CardPictures/AjaniSteadfast.jpg" alt="AjaniSteadfast">
+   				 		<img src="${image}" alt="AjaniSteadfast">
     				</a>
     			</div>
     			<div class="single-card-text">
     				<ul>
-    					<li class:"card-info"> Name: </li>
-    					<li class:"card-info"> Colors: </li>
-    					<li class:"card-info"> Cost: </li>
-    					<li class:"card-info"> CMC: </li>
-    					<li class:"card-info"> SuperTypes: </li>
-    					<li class:"card-info"> Types: </li>
-    					<li class:"card-info"> SubTypes: </li>
-    					<li class:"card-info"> Text:  </li>
-    					<li class:"card-info"> Power: </li>
-    					<li class:"card-info"> Toughness: </li>
+    					<li class:"card-info"> Name: ${card_name}</li>
+    					<li class:"card-info"> Colors: ${card_id}</li>
+    					<li class:"card-info"> Cost: ${cost}</li>
+    					<li class:"card-info"> CMC: ${cmc}</li>
+    					<li class:"card-info"> SuperTypes: ${super_type}</li>
+    					<li class:"card-info"> Types: ${types}</li>
+    					<li class:"card-info"> SubTypes: ${subTypes}</li>
+    					<li class:"card-info"> Text:  ${text}</li>
+    					<li class:"card-info"> Power: ${power}</li>
+    					<li class:"card-info"> Toughness: ${toughness}</li>
     				</ul>
     			</div>
   			</div>

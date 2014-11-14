@@ -8,6 +8,10 @@
         <servlet-name>UserVerify</servlet-name>
         <servlet-class>Controllers.UserVerify</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getCardAttributes</servlet-name>
+        <servlet-class>Controllers.getCardAttributes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CardSearch</servlet-name>
         <url-pattern>/CardSearch</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>UserVerify</servlet-name>
         <url-pattern>/UserVerify</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getCardAttributes</servlet-name>
+        <url-pattern>/getCardAttributes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
