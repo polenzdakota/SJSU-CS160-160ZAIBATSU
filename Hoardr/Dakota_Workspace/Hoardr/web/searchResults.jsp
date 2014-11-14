@@ -49,11 +49,9 @@
 
 
     <div class="container">
-
-      <div class="homepage-text-not-logged-in">
-        <h1>Welcome to <mark class="hoardr-text">HOARDR</mark></h1>
-        <p class="lead">Enter any Magic the Gathering card name below.<br> For more features please login.</p>
-	  </div>
+	      <div class="homepage-text-not-logged-in">
+	      	<p class="lead">Search again!</p>
+	  	  </div>
 	  
 	  <!-- Seach bar --> 
 	  <!-- https://blog.twitter.com/2013/twitter-typeaheadjs-you-autocomplete-me -->
@@ -66,6 +64,18 @@
 			<button type="submit" class="custom-button btn btn-default label-success">Search</button>
 		</form>
 	  </div>
+     
+     
+     
+     <div class="results">
+		<ul class="list-group">
+			<a href="#"> <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li></a>
+			<a href="#"> <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li></a>
+			<a href="#"> <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li></a>
+ 			<a href="#"> <li class="list-group-item list-group-item-danger">Vestibulum at eros</li></a>
+		</ul>
+	</div>
+     
     </div><!-- /.container -->
   
   

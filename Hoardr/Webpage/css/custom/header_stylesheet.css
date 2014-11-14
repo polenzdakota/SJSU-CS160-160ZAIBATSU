@@ -5,18 +5,23 @@
 }
 
 .navbar-inverse {
+	margin-left: 15%;
+	margin-right: 15%;
 	height: 100px;
 	background-color: #4A4A4A;
+	border-left-width: 7px;
+	border-right-width: 7px;
 	border-bottom-width: 7px;
-	border-bottom-color: #000000;
+	border-color: #000000;
 }
 
 .navbar-login {
 	padding: 30px;
+	padding-right: 17%;
 	
 }
 
-.custom-button{
+.custom-button {
 	border-width: 0px;
 	font-size: 12;
 	font-weight: bold;
