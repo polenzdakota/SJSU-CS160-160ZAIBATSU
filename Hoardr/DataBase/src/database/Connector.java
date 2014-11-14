@@ -36,6 +36,7 @@ public class Connector implements Serializable{
    public Connector(){
             conn = null;
             ResultSet rs;
+            
          try{
         
         Class.forName(JDBC_DRIVER);

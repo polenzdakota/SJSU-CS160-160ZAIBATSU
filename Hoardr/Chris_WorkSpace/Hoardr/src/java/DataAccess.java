@@ -50,10 +50,9 @@ public class DataAccess extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userPath = request.getServletPath();
-        
-        processRequest(request, response);
-        PrintWriter out = null;
+            
+            processRequest(request, response);
+            PrintWriter out = null;
             Connection connection = null;
             Statement statement;
             ResultSet rs;
@@ -64,7 +63,7 @@ public class DataAccess extends HttpServlet {
         statement = connection.createStatement();
         response.setContentType("test/html");
         out = response.getWriter();
-        rs = statement.executeQuery("Select card_id,card_name from Cards where card_id=0");
+        rs = statement.executeQuery("Select card_id,card_name from Cards");
         
         out.println("<html><head><tile>CARDS-ID</title></head>");
         out.println("<body>");

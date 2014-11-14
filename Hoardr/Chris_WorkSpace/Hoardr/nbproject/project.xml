@@ -13,7 +13,7 @@
             </web-module-libraries>
             <web-module-additional-libraries>
                 <library dirs="200">
-                    <file>${file.reference.NetBeansProjects-DataBase}</file>
+                    <file>${file.reference.apache-tomcat-8.0.9-webapps}</file>
                     <path-in-war>/</path-in-war>
                 </library>
             </web-module-additional-libraries>
