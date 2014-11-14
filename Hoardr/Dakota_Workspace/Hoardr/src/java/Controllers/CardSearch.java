@@ -29,13 +29,14 @@ public class CardSearch extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String currentPath = request.getServletPath();
-        String toPath = "/searchResults";
+        String url = request.getContextPath();
         String card = request.getParameter("card_name");
         if (searchDB(card)) {
-            String finalPath = currentPath + toPath;
-            response.sendRedirect(finalPath);
+            url = url + "/searchResults.jsp";
+            response.sendRedirect(url);
         } else {
+            url = url + "/HomePage.jsp";
+            response.sendRedirect(url);
         }
 
     }
@@ -48,7 +49,7 @@ public class CardSearch extends HttpServlet {
      */
     public boolean searchDB(String name) {
         //Add db search should call a class located in models.
-        return true;
+        return !name.isEmpty();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
