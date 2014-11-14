@@ -29,25 +29,26 @@ public class CardSearch extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CardSearch</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CardSearch at " + request.getContextPath() + "</h1>");
-            out.println("<p> This Page will display the card that you searched for</p>");
-            String card = request.getParameter("card_name");
-            String sent = "<p>The card you searched for is: " + card + "</p>";
-            out.println(sent);
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
+        String currentPath = request.getServletPath();
+        String toPath = "/searchResults";
+        String card = request.getParameter("card_name");
+        if (searchDB(card)) {
+            String finalPath = currentPath + toPath;
+            response.sendRedirect(finalPath);
+        } else {
         }
+
+    }
+
+    /**
+     * Verify and finds card within the database.
+     *
+     * @param name The name of the card.
+     * @return
+     */
+    public boolean searchDB(String name) {
+        //Add db search should call a class located in models.
+        return true;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
