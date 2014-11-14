@@ -32,8 +32,8 @@ public class CardSearch extends HttpServlet {
         String url = request.getContextPath();
         String card = request.getParameter("card_name");
         if (searchDB(card)) {
-            url = url + "/searchResults.jsp";
-            response.sendRedirect(url);
+            request.setAttribute("card", card);
+            request.getRequestDispatcher("/searchResults.jsp").forward(request, response);
         } else {
             url = url + "/HomePage.jsp";
             response.sendRedirect(url);

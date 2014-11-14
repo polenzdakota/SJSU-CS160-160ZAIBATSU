@@ -69,7 +69,7 @@
      
      <div class="results">
 		<ul class="list-group">
-			<a href="#"> <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li></a>
+			<a href="#"> <li class="list-group-item list-group-item-success">${card}</li></a>
 			<a href="#"> <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li></a>
 			<a href="#"> <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li></a>
  			<a href="#"> <li class="list-group-item list-group-item-danger">Vestibulum at eros</li></a>
