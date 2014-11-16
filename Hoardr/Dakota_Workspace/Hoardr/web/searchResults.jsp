@@ -66,10 +66,13 @@
 	  </div>
      
      
-     
+     <!--
+     We need to do something about this since a normal href does
+     not send data to our servlets
+     -->
      <div class="results">
 		<ul class="list-group">
-			<a href="${pageContext.request.contextPath}/getCardAttributes"> <li class="list-group-item list-group-item-success">${card}</li></a>
+			<a href="${pageContext.request.contextPath}/FindCard"> <li class="list-group-item list-group-item-success">${card}</li></a>
 			<a href="#"> <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li></a>
 			<a href="#"> <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li></a>
  			<a href="#"> <li class="list-group-item list-group-item-danger">Vestibulum at eros</li></a>

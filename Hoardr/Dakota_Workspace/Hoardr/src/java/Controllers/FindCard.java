@@ -4,6 +4,8 @@
  */
 package Controllers;
 
+import Models.Card;
+import Models.SearchCard;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cody
  */
-public class getCardAttributes extends HttpServlet {
+public class FindCard extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -29,65 +31,21 @@ public class getCardAttributes extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String card = request.getParameter("card");
-        request.setAttribute("card_name", card);
-        request.setAttribute("card_id", getCardID());
-        request.setAttribute("color", getColor());
-        request.setAttribute("cost", getCost());
-        request.setAttribute("super_type", getSuperTypes());
-        request.setAttribute("types", getTypes());
-        request.setAttribute("subTypes", getSubTypes());
-        request.setAttribute("text", getText());
-        request.setAttribute("power", getPower());
-        request.setAttribute("toughness", getToughness());
-        request.setAttribute("image", getImageURL());
-        request.setAttribute("cmc", getCMC());
-        request.getRequestDispatcher("/singleCardPage.jsp").forward(request, response);
-    }
-
-    public String getCardID() {
-        return "00001";
-    }
-
-    public String getColor() {
-        return "White";
-    }
-
-    public String getCMC() {
-        return "4";
-    }
-
-    public String getCost() {
-        return "3W";
-    }
-
-    public String getSuperTypes() {
-        return "Planeswalker";
-    }
-
-    public String getTypes() {
-        return "";
-    }
-
-    public String getSubTypes() {
-        return "Ajani";
-    }
-
-    public String getText() {
-        return "FUCK";
-    }
-
-    public String getPower() {
-        return "4";
-    }
-
-    public String getToughness() {
-        return "0";
-    }
-
-    public String getImageURL() {
-        return "Images/CardPictures/AjaniSteadfast.jpg";
-    }
+            Card found = SearchCard.searchOneCard();
+            request.setAttribute("card_name", found.getName());
+            request.setAttribute("card_id", found.getCardID());
+            request.setAttribute("color", found.getColor());
+            request.setAttribute("cost", found.getCost());
+            request.setAttribute("super_type", found.getSuperTypes());
+            request.setAttribute("types", found.getTypes());
+            request.setAttribute("subTypes", found.getSubTypes());
+            request.setAttribute("text", found.getText());
+            request.setAttribute("power", found.getPower());
+            request.setAttribute("toughness", found.getToughness());
+            request.setAttribute("image", found.getImageURL());
+            request.setAttribute("cmc", found.getCMC());
+            request.getRequestDispatcher("/singleCardPage.jsp").forward(request, response);
+}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

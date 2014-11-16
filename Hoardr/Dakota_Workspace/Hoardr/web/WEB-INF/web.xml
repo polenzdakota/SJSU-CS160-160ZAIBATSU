@@ -12,6 +12,18 @@
         <servlet-name>getCardAttributes</servlet-name>
         <servlet-class>Controllers.getCardAttributes</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FindCard</servlet-name>
+        <servlet-class>Controllers.FindCard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCard</servlet-name>
+        <servlet-class>Models.SearchCard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Card</servlet-name>
+        <servlet-class>Models.Card</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CardSearch</servlet-name>
         <url-pattern>/CardSearch</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>getCardAttributes</servlet-name>
         <url-pattern>/getCardAttributes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FindCard</servlet-name>
+        <url-pattern>/FindCard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCard</servlet-name>
+        <url-pattern>/SearchCard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Card</servlet-name>
+        <url-pattern>/Card</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
