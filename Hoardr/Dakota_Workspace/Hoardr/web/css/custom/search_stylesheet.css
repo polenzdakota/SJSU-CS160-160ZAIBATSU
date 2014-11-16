@@ -27,15 +27,13 @@ body {
 
 
 .single-card-image {
-	background-color: ;
 	padding:10px;
 	width:50%;
-	float:left:
+	float:left;
 
 }
 
 .single-card-text {
-	background: ;
 	margin-top:-60%;
 	margin-right:30%;
 	float: right;
@@ -43,12 +41,12 @@ body {
 
 .hello-world {
 	width: 80%;
-	background:;
+	
 }
 
 li {
 	padding: 5px;
 	color: white;
 	font-weight:bold;
-	background-color: ;
+	
 }
