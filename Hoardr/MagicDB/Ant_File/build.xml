@@ -1,0 +1,55 @@
+
+
+<project name="Hoardr" default="default" basedir=".">
+	<property file="build.properties" />	
+	<property name="src" location="src/java"/>
+ <!--<property name="temp.dir" location="temp"/> -->
+	<property name="build.dir" location="build"/>
+  <property name="servlet-api" location="serv"/>
+	<property name="MYSQLDRIVER" location="sqlconnect1"/>
+	<property name ="tomcatdirectory" location ="tomcat"/>
+	<!--<property name="MYSQLDRIVER"    value="/usr/share/java/mysql-connector-java.jar"/>-->
+	
+	<property name="sql.driver" value="jdbc"/>
+  <property name="sql.url" value="url"/>
+  <property name="sql.user" value="user"/>
+  <property name="sql.pass" value="pass"/>
+	
+  <path id="CLASSPATH">
+    <pathelement location = "classes"/>
+    <pathelement location = "${MYSQLDRIVER}"/>
+	</path>
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+	</target>
+	<target name="init" depends="clean">
+		<mkdir dir="${build.dir}/WEB-INF/classes"/>
+		<mkdir dir="${build.dir}/WEB-INF/lib"/>
+	</target>
+
+	<target name="default" depends="compile,war"/>
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build.dir}" classpath="${servlet-api}"/>
+	</target>
+
+	<target name="mydb">
+  	<sql driver="${sql.driver}" url="${sql.url}" userid="${sql.user}" classpathref="CLASSPATH" password="${sql.pass}" >
+  	<transaction src="create.sql"/>
+  	<transaction src="populate.sql"/>
+  	</sql>
+  </target>
+
+	<target name="war" depends="mydb">
+		<mkdir dir="${build.dir}/WEB-INF/classes"/>
+		<copy todir="${build.dir}/WEB-INF/classes">
+			<fileset dir="${build.dir}" includes="*.class"/> 		
+		</copy>
+		<mkdir dir="${build.dir}/WEB-INF/lib"/>
+		<copy file="${MYSQLDRIVER}" todir="${build.dir}/WEB-INF/lib"/>
+		<copy todir="${build.dir}">
+			<fileset dir="web"/>
+		</copy>
+		<jar destfile="Hoardr.war" basedir="${build.dir}"/>
+		<copy file="Hoardr.war" todir="${tomcatdirectory}"/>
+	</target>
+</project>
