@@ -23,21 +23,28 @@
     <pathelement location = "${MYSQLDRIVER}"/>
 	</path>
 	
-	<target name="clean">
+	<target name="clean-website">
 		<delete dir="${deploy.dir}"/>
 	</target>
 	
-	<target name="init" depends="clean">
+	<target name="clean-populate">
+		<delete file="${db.dir}/populate.sql"/>
+	</target>
+	
+	<target name="clean" depends="clean-website,clean-populate"/>
+	
+	<target name="init" depends="clean-website">
 		<mkdir dir="${deploy.dir}/WEB-INF/classes"/>
 		<mkdir dir="${deploy.dir}/WEB-INF/lib"/>
 	</target>
 
 	<target name="default" depends="compile,deploy"/>
+	
 	<target name="compile" depends="init">
 		<javac srcdir="${src}" destdir="${deploy.dir}/WEB-INF/classes" classpath="${servlet-api}"/>
 	</target>
 
-	<target name="database" depends="populate">
+	<target name="database">
   	<sql driver="${sql.driver}" url="${sql.url}" userid="${sql.user}" classpathref="CLASSPATH" password="${sql.pass}" >
   	<transaction src="${db.dir}/create.sql"/>
   	<transaction src="${db.dir}/populate.sql"/>
