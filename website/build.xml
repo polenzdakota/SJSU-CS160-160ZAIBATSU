@@ -1,0 +1,59 @@
+<project name="Hoardr" default="default" basedir=".">
+	<property file="build.properties" />	
+	<property name="src" location="src"/>
+ <!--<property name="temp.dir" location="temp"/> -->
+	<property name="web.dir" location="web"/>
+	<property name="db.dir" location="db"/>
+	<property name="res.dir" location="res"/>
+  <property name="servlet-api" location="serv"/>
+	<property name="MYSQLDRIVER" location="sqlconnect1"/>
+	<property name ="tomcatdirectory" location ="tomcat"/>
+	<!--<property name="MYSQLDRIVER"    value="/usr/share/java/mysql-connector-java.jar"/>-->
+	
+	<property name="sql.driver" value="jdbc"/>
+  <property name="sql.url" value="url"/>
+  <property name="sql.user" value="user"/>
+  <property name="sql.pass" value="pass"/>
+	
+  <path id="CLASSPATH">
+    <pathelement location = "classes"/>
+    <pathelement location = "${MYSQLDRIVER}"/>
+	</path>
+	
+	<target name="clean">
+		<delete dir="${web.dir}"/>
+	</target>
+	
+	<target name="init" depends="clean">
+		<mkdir dir="${web.dir}/WEB-INF/classes"/>
+		<mkdir dir="${web.dir}/WEB-INF/lib"/>
+	</target>
+
+	<target name="default" depends="compile,deploy"/>
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${web.dir}" classpath="${servlet-api}"/>
+	</target>
+
+	<target name="database" depends="populate">
+  	<sql driver="${sql.driver}" url="${sql.url}" userid="${sql.user}" classpathref="CLASSPATH" password="${sql.pass}" >
+  	<transaction src="${db.dir}/create.sql"/>
+  	<transaction src="${db.dir}/populate.sql"/>
+  	</sql>
+  </target>
+  
+  <target name="populate">
+		<exec executable="node" dir="${db.dir}" output="${db.dir}/populate.sql">
+			<arg value="populate.js"/>
+		</exec>
+  </target>
+
+	<target name="deploy" depends="database">
+		<copy todir="${web.dir}/WEB-INF/classes">
+			<fileset dir="${web.dir}" includes="*.class"/> 		
+		</copy>
+		<copy file="${MYSQLDRIVER}" todir="${web.dir}/WEB-INF/lib"/>
+		<copy todir="${web.dir}">
+			<fileset dir="${res.dir}"/>
+		</copy>
+	</target>
+</project>
