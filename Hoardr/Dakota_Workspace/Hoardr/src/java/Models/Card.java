@@ -23,6 +23,7 @@ public class Card {
     private String toughness;
     private String image;
     private String cmc;
+    private String loyalty;
 
     /**
      * Constructs variables used in Card
@@ -89,5 +90,9 @@ public class Card {
 
     public String getImageURL() {
         return image;
+    }
+    
+    public String getLoyalty() {
+        return loyalty;
     }
 }
