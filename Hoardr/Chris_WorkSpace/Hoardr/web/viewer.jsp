@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <jsp:include page="/Hoardr/DataAccess" flush="true" />
+        <jsp:include page="/DataAccess" flush="true" />
     </body>
 </html>

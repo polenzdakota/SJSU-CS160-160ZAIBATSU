@@ -10,3 +10,8 @@ body {
   font-weight: bold;
   font-family: Verdana, Geneva, sans-serif;
 }
+
+.container {
+	padding-top:10%;
+	background-color: 4b84d2;
+}
