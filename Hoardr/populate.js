@@ -49,10 +49,15 @@ for (cardAttrib in cardsJSON) {
 		});
 	}
 	
+	var loyalty = 'NULL';
+	if (card.loyalty) {
+		loyalty = card.loyalty;
+	}
+	
 	console.log("INSERT INTO Cards" + 
-	"(card_id,card_name,card_colors,card_cost,card_cmc,card_supertypes,card_cardtypes,card_subtypes,card_text,card_power,card_toughness,card_image_location)" + 
-	"VALUES" + 
-	'(' + cardid + ',' + name + ',' + colors + ',' + cost + ',' + cmc + ',' + supertypes + ',' + types + ',' + subtypes + ',' + text + ',' + power + ',' + toughness + ',' + '"/img/' + cardid +'");' 
+	"(card_id,card_name,card_colors,card_cost,card_cmc,card_supertypes,card_cardtypes,card_subtypes,card_text,card_power,card_toughness,card_loyalty,card_image_location)" + 
+	"VALUES" +
+	'(' + cardid + ',' + name + ',' + colors + ',' + cost + ',' + cmc + ',' + supertypes + ',' + types + ',' + subtypes + ',' + text + ',' + power + ',' + toughness + ',' + loyalty + '"/img/' + cardid +'");' 
 	);
 	cardid++;
 }
