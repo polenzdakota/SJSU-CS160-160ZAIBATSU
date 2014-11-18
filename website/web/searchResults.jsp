@@ -74,22 +74,17 @@
             -->
             <div class="results">
                 <ul class="list-group">
-                    <form name="submitForm" method="POST" action="/servlet/ServletName">
-                        <input type="hidden" name="param1" value="param1Value">
-                        <A HREF="javascript:document.submitForm.submit()">Click Me</A>
-                    </form>
+
                     <%
-
-
                         Object tmp = request.getAttribute("set");
-                        String toPage = "${pageContext.request.contextPath}/singleCardPage";
+                        String toPage = request.getContextPath() + "/Linker";
                         ArrayList<Card> set = (ArrayList<Card>) tmp;
+
                         for (int i = 0; i < set.size(); i++) {
-                            out.print("<a href=\"" + toPage + "\">" + "<li class=\"list-group-item list-group-item-success\">" + set.get(i).getName() + "</li></a>");
-                            request.setAttribute("set", set);
+                            int id = set.get(i).getId();
+                            out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success\">" + set.get(i).getName() + "</li></a>");
                         }
-
-
+                        request.setAttribute("set", set);
                     %>
                     <!--
                         <a href="${pageContext.request.contextPath}/FindCard"> <li class="list-group-item list-group-item-success">${card}</li></a>

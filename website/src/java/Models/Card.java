@@ -59,7 +59,7 @@ public class Card implements Serializable{
    public String getName(){
        return cardName;
    }
-    int getId(){
+    public int getId(){
        return id;
    }
    
