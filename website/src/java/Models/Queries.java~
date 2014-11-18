@@ -49,25 +49,7 @@ public class Queries {
        }
       
        return rs;
-     }
-     public ResultSet oneCard(String s) throws SQLException{
-         
-       con = new Connector();
-       con.setConnection();
-       try{
-           String sql = "SELECT * from Cards where card_id = ?;";
-           p = con.connection.prepareStatement(sql);
-           p.setString(1, s);
-           System.out.println(p);
-           rs = p.executeQuery();
-      
-      
-       }catch(SQLException e){
-           System.out.println("SQL error" + e.getMessage());
-       }
-      
-       return rs;
-     }
+   }
        
    public ArrayList<Card> setCards(ResultSet rs) throws SQLException{
        ArrayList<Card> list;
@@ -115,4 +97,3 @@ public class Queries {
    }
   
 }
-

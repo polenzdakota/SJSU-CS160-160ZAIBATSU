@@ -63,7 +63,7 @@
                                     String set = request.getParameter("set");
                                     System.out.println(set);
                                     %>
-    					<li class:"card-info"> Name: ${set.get(i).getName}</li>
+    					<li class:"card-info"> Name: ${Name}</li>
     					<li class:"card-info"> Colors: ${card_id}</li>
     					<li class:"card-info"> Cost: ${cost}</li>
     					<li class:"card-info"> CMC: ${cmc}</li>

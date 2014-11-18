@@ -47,7 +47,6 @@ public class CardSearch extends HttpServlet {
             url = url + "/HomePage.jsp";
             response.sendRedirect(url);
         }
-
     }
 
     /**
