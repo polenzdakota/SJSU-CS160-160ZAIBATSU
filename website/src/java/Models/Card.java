@@ -29,12 +29,12 @@ public class Card implements Serializable{
    private final String card_text;
    private final String card_power;
    private final String card_toughness;
-  // private final String card_loyalty;
+   private final String card_loyalty;
    private final String card_image_location;
    
    public Card(String cardName, int id, int color,String cost,int card_cmc, String card_supertypes,
            String card_types,String card_subtypes, String card_text, String card_power, 
-           String card_toughness,String card_image_location){
+           String card_toughness,String card_loyalty,String card_image_location){
            
             this.cardName = cardName;
             this.id = id;
@@ -47,7 +47,7 @@ public class Card implements Serializable{
             this.card_text = card_text;
             this.card_power = card_power;
             this.card_toughness = card_toughness;
-            //this.card_loyalty = card_loyalty;
+            this.card_loyalty = card_loyalty;
             this.card_image_location = card_image_location;
             
                     
@@ -90,11 +90,11 @@ public class Card implements Serializable{
    public String getCardtoughness(){
        return card_toughness;
    }
-   /*
+  
    public String getCardloyalty(){
        return card_loyalty;
    }
-   */
+   
    public String getImageCardlocation(){
        return card_image_location;
    }

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class Connector implements Serializable{
     
-    Connection connection;
+   Connection connection;
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
    static final String DB_URL = "jdbc:mysql://localhost/mydb"; //this can be any database
 
@@ -35,8 +35,9 @@ public class Connector implements Serializable{
    
    public Connector(){
             connection = null;
-            ResultSet rs;
-            
+   }
+   
+   public void setConnection(){
          try{
         
         Class.forName(JDBC_DRIVER);
@@ -49,6 +50,20 @@ public class Connector implements Serializable{
         }catch(SQLException e){
             System.out.println("SQL error" + e.getMessage());   
         }
+   }
+         
+  
+    public void closeConnection(){
+       try{
+             if(connection!=null){
+                 System.out.println("Closing connection");
+                 connection.close();
+             
+             }
+             }catch(SQLException e){
+                 System.out.println("SQL error" + e.getMessage());
+                 }
+            }
    }
   
    /*
@@ -93,4 +108,3 @@ public class Connector implements Serializable{
        return list;
       }
    */
-}
