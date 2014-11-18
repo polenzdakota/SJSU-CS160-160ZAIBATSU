@@ -4,8 +4,6 @@
  */
 package Controllers;
 
-import Models.Card;
-import Models.SearchCard;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cody
  */
-public class FindCard extends HttpServlet {
+public class Linker extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -31,21 +29,22 @@ public class FindCard extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            Card found = SearchCard.searchOneCard();
-            request.setAttribute("card_name", found.getName());
-            request.setAttribute("card_id", found.getCardID());
-            request.setAttribute("color", found.getColor());
-            request.setAttribute("cost", found.getCost());
-            request.setAttribute("super_type", found.getSuperTypes());
-            request.setAttribute("types", found.getTypes());
-            request.setAttribute("subTypes", found.getSubTypes());
-            request.setAttribute("text", found.getText());
-            request.setAttribute("power", found.getPower());
-            request.setAttribute("toughness", found.getToughness());
-            request.setAttribute("image", found.getImageURL());
-            request.setAttribute("cmc", found.getCMC());
-            request.getRequestDispatcher("/singleCardPage.jsp").forward(request, response);
-}
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Linker</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Linker at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        } finally {            
+            out.close();
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

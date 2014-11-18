@@ -31,7 +31,7 @@ public class Connector implements Serializable{
    static final String DB_URL = "jdbc:mysql://localhost/mydb"; //this can be any database
 
    static final String USER = "root";
-   static final String PASS = "hachiman24";
+   static final String PASS = "";
    
    public Connector(){
             connection = null;

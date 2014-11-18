@@ -4,8 +4,13 @@
  */
 package Controllers;
 
+import Models.Card;
+import Models.Queries;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +33,15 @@ public class CardSearch extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         String url = request.getContextPath();
         String card = request.getParameter("card_name");
+        Queries searchField = new Queries();
+        ResultSet results = searchField.searchREGEXP(card);
+        ArrayList<Card> cardSet = searchField.setCards(results);
+
         if (searchDB(card)) {
-            request.setAttribute("card", card);
+            request.setAttribute("set", cardSet);
             request.getRequestDispatcher("/searchResults.jsp").forward(request, response);
         } else {
             url = url + "/HomePage.jsp";
@@ -51,8 +60,8 @@ public class CardSearch extends HttpServlet {
         //Add db search should call a class located in models.
         return !name.isEmpty();
     }
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.
@@ -65,7 +74,12 @@ public class CardSearch extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try{
         processRequest(request, response);
+        }
+        catch(SQLException e){
+            System.out.println("SQL error" + e.getMessage());
+        }
     }
 
     /**
@@ -80,7 +94,13 @@ public class CardSearch extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         try{
         processRequest(request, response);
+        }
+        catch(SQLException e){
+            System.out.println("SQL error" + e.getMessage());
+        }
+   
     }
 
     /**

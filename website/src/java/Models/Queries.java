@@ -48,9 +48,9 @@ public class Queries {
        return rs;
    }
        
-   public List<Card> setCards(ResultSet rs) throws SQLException{
-       List<Card> list;
-       list = new ArrayList<>();
+   public ArrayList<Card> setCards(ResultSet rs) throws SQLException{
+       ArrayList<Card> list;
+       list = new ArrayList<Card>();
        try{
         while(rs.next()){
             
