@@ -1,4 +1,6 @@
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Models.Card"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,7 +59,11 @@
     			</div>
     			<div class="single-card-text">
     				<ul>
-    					<li class:"card-info"> Name: ${card_name}</li>
+                                    <%
+                                    String set = request.getParameter("set");
+                                    System.out.println(set);
+                                    %>
+    					<li class:"card-info"> Name: ${set.get(i).getName}</li>
     					<li class:"card-info"> Colors: ${card_id}</li>
     					<li class:"card-info"> Cost: ${cost}</li>
     					<li class:"card-info"> CMC: ${cmc}</li>
@@ -66,7 +72,7 @@
     					<li class:"card-info"> SubTypes: ${subTypes}</li>
     					<li class:"card-info"> Text:  ${text}</li>
     					<li class:"card-info"> Power: ${power}</li>
-    					<li class:"card-info"> Toughness: ${toughness}</li>
+    					<li class:"card-info"> Toughness: ${set.get(index).getCardtoughness()}</li>
     				</ul>
     			</div>
   			</div>

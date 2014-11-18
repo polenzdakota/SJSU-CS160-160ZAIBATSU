@@ -1,0 +1,5 @@
+servlet-api = /usr/share/tomcat8/lib/servlet-api.jar
+MYSQLDRIVER = /usr/share/java/mysql-jdbc/mysql-connector-java-bin.jar
+sql.url = jdbc:mysql://127.0.0.1:3306/
+sql.driver = com.mysql.jdbc.Driver
+tomcat.dir = /usr/share/tomcat8
