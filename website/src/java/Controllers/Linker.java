@@ -35,23 +35,34 @@ public class Linker extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         String url = request.getContextPath();
-        String card = request.getParameter("card_name");
+        String id = request.getParameter("index");
         Queries searchField = new Queries();
-        ResultSet results = searchField.searchREGEXP(card);
+        ResultSet results = searchField.oneCard(id);
         ArrayList<Card> singleCard = searchField.setCards(results);
+        Card card = singleCard.get(0);
 
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
-        request.setAttribute(card, url);
+        request.setAttribute("name", card.getName());
+        request.setAttribute("toughness", card.getCardtoughness());
+        request.setAttribute("cost", card.getCost());
+        request.setAttribute("color", card.getColors());
+        request.setAttribute("cmc", card.getCmc());
+        request.setAttribute("super_type", card.getSupertypes());
+        request.setAttribute("types", card.getCardtypes());
+        request.setAttribute("subTypes", card.getCardsubtypes());
+        request.setAttribute("text", card.getText());
+        request.setAttribute("power", card.getCardPower());
+//        
+//        request.setAttribute(card, url);
+//        request.setAttribute(card, url);
+//        request.setAttribute(card, url);
+//        request.setAttribute(card, url);
+//        request.setAttribute(card, url);
+//        request.setAttribute(card, url);
+//        request.setAttribute(card, url);
+//        request.setAttribute(card, url);
+//        request.setAttribute(card, url);
+//        request.setAttribute(card, url);
+         request.getRequestDispatcher("/singleCardPage.jsp").forward(request, response);
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 

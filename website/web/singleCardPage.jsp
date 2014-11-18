@@ -54,7 +54,7 @@
   			<div class="hello-world">
   				<div class="single-card-image">
    				 	<a href="#" class="cardpicture">
-   				 		<img src="${image}" alt="AjaniSteadfast">
+   				 		<img src="Images/CardPictures/AjaniSteadfast.jpg" alt="AjaniSteadfast">
     				</a>
     			</div>
     			<div class="single-card-text">
@@ -63,8 +63,8 @@
                                     String set = request.getParameter("set");
                                     System.out.println(set);
                                     %>
-    					<li class:"card-info"> Name: ${Name}</li>
-    					<li class:"card-info"> Colors: ${card_id}</li>
+    					<li class:"card-info"> Name: ${name}</li>
+    					<li class:"card-info"> Colors: ${color}</li>
     					<li class:"card-info"> Cost: ${cost}</li>
     					<li class:"card-info"> CMC: ${cmc}</li>
     					<li class:"card-info"> SuperTypes: ${super_type}</li>
@@ -72,7 +72,7 @@
     					<li class:"card-info"> SubTypes: ${subTypes}</li>
     					<li class:"card-info"> Text:  ${text}</li>
     					<li class:"card-info"> Power: ${power}</li>
-    					<li class:"card-info"> Toughness: ${set.get(index).getCardtoughness()}</li>
+    					<li class:"card-info"> Toughness: ${toughness}</li>
     				</ul>
     			</div>
   			</div>
