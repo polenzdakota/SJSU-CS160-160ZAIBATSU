@@ -1,98 +1,102 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Models;
 
+import java.io.Serializable;
+
 /**
- * This class holds all variables used in a card
  *
- * @author Dakota
+ * @author Zaibatsu - chris
  */
-public class Card {
 
-    private String name;
-    private String id;
-    private String color;
-    private String cost;
-    private String superType;
-    private String types;
-    private String subTypes;
-    private String text;
-    private String power;
-    private String toughness;
-    private String image;
-    private String cmc;
-    private String loyalty;
+/*
+* Card class getters for all the columns in the database. 
+* Constructor initializes all the variables in this particular case the  columns of the Card Tables
+*
+*/
+public class Card implements Serializable{
+   private final String cardName;
+   private final int id;
+   private final int color;
+   private final String cost;
+   private final int card_cmc;
+   private final String card_supertypes;
+   private final String card_types;
+   private final String card_subtypes;
+   private final String card_text;
+   private final String card_power;
+   private final String card_toughness;
+  // private final String card_loyalty;
+   private final String card_image_location;
+   
+   public Card(String cardName, int id, int color,String cost,int card_cmc, String card_supertypes,
+           String card_types,String card_subtypes, String card_text, String card_power, 
+           String card_toughness,String card_image_location){
+           
+            this.cardName = cardName;
+            this.id = id;
+            this.color = color;
+            this.cost = cost;
+            this.card_cmc = card_cmc;
+            this.card_supertypes = card_supertypes;
+            this.card_types = card_types;
+            this.card_subtypes = card_subtypes;
+            this.card_text = card_text;
+            this.card_power = card_power;
+            this.card_toughness = card_toughness;
+            //this.card_loyalty = card_loyalty;
+            this.card_image_location = card_image_location;
+            
+                    
+   }
+   
 
-    /**
-     * Constructs variables used in Card
-     */
-    public Card() {
-        //TODO add actual code
-        name = "Ajani Steadfast";
-        id = "00001";
-        color = "White";
-        cost = "4";
-        superType = "Planeswalker";
-        types = "";
-        subTypes = "Ajani";
-        text = "FUCK";
-        power = "4";
-        toughness = "0";
-        image = "Images/CardPictures/AjaniSteadfast.jpg";
-        cmc = "4";
-    }
+ 
 
-    public String getName() {
-        return name;
-    }
-
-    public String getCardID() {
-        return id;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public String getCMC() {
-        return cmc;
-    }
-
-    public String getCost() {
-        return cost;
-    }
-
-    public String getSuperTypes() {
-        return superType;
-    }
-
-    public String getTypes() {
-        return types;
-    }
-
-    public String getSubTypes() {
-        return subTypes;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public String getPower() {
-        return power;
-    }
-
-    public String getToughness() {
-        return toughness;
-    }
-
-    public String getImageURL() {
-        return image;
-    }
-    
-    public String getLoyalty() {
-        return loyalty;
-    }
+   public String getName(){
+       return cardName;
+   }
+    int getId(){
+       return id;
+   }
+   
+   public int getColors(){
+    return color;   
+   }
+   public String getCost(){
+       return cost;
+   }
+   public int getCmc(){
+       return card_cmc;
+   }
+   public String getSupertypes(){   
+       return card_supertypes;
+   }
+   public String getCardtypes(){
+       return card_types;
+   }
+   public String getCardsubtypes(){
+       return card_subtypes;
+   }
+   public String getText(){
+       return card_text;
+   }
+   public String getCardPower(){
+       return card_power;
+   }
+   public String getCardtoughness(){
+       return card_toughness;
+   }
+   /*
+   public String getCardloyalty(){
+       return card_loyalty;
+   }
+   */
+   public String getImageCardlocation(){
+       return card_image_location;
+   }
+   
 }
