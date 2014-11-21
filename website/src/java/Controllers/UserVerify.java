@@ -32,13 +32,16 @@ public class UserVerify extends HttpServlet {
             throws ServletException, IOException {
         String user = request.getParameter("username").toLowerCase();
         String pass = request.getParameter("password").toLowerCase();
-        //Credentials not case sensitive for now
+        //Credentials are not case sensitive for now
         String fakeUsers[] = {"dakota", "chris", "ryan", "sean", "sonica"};
         String fakePass = "zaibatsu";
         HttpSession session = request.getSession();
         
+        //Currently any of our names will work with the password Zaibatsu
         for (int i = 0; i < fakeUsers.length; i++) {
             if (user.equals(fakeUsers[i]) && pass.equals(fakePass)) {
+                //Add getUser info call to quaries here then pass
+                //attributes either to UserPage or to the session
                 session.setAttribute("currentUser", fakeUsers[i]);
                 String url = request.getContextPath() + "/UserPage.jsp"; 
                 response.sendRedirect(url);

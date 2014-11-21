@@ -14,7 +14,8 @@
     <body>
         <%
             //Check for current user and sets user if currently loged in.
-            //Redirects to home page if not logged in
+            //Redirects to home page if not logged in and attempted
+            // to access page directly
             String currentUser = null;
             if (session.getAttribute("currentUser") == null) {
                 response.sendRedirect("HomePage.jsp");

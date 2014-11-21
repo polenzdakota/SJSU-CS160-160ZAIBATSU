@@ -30,10 +30,14 @@ public class LogOut extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession(false);
         if(session != null) {
             session.invalidate();
         }
+        //Deletes all variables in current session then redirects to
+        //the homepage. Not quite sure how to delete individual
+        //values from the session, but i'm not sure that is necessary.
         String url = request.getContextPath() + "/HomePage.jsp";
         response.sendRedirect(url);
     }
