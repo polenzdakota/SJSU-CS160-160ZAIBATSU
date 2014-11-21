@@ -86,12 +86,6 @@
                         }
                         request.setAttribute("set", set);
                     %>
-                    <!--
-                        <a href="${pageContext.request.contextPath}/FindCard"> <li class="list-group-item list-group-item-success">${card}</li></a>
-                        <a href="#"> <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li></a>
-                        <a href="#"> <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li></a>
-                        <a href="#"> <li class="list-group-item list-group-item-danger">Vestibulum at eros</li></a>
-                    -->
                 </ul>
             </div>
 
