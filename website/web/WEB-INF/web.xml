@@ -28,6 +28,10 @@
         <servlet-name>Linker</servlet-name>
         <servlet-class>Controllers.Linker</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>Controllers.LogOut</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserVerify</servlet-name>
         <url-pattern>/UserVerify</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>Linker</servlet-name>
         <url-pattern>/Linker</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

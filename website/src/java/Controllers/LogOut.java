@@ -14,9 +14,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author cody
+ * @author Dakota
  */
-public class UserVerify extends HttpServlet {
+public class LogOut extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -30,20 +30,12 @@ public class UserVerify extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String user = request.getParameter("username").toLowerCase();
-        String pass = request.getParameter("password").toLowerCase();
-        //Credentials not case sensitive for now
-        String fakeUsers[] = {"dakota", "chris", "ryan", "sean", "sonica"};
-        String fakePass = "zaibatsu";
-        HttpSession session = request.getSession();
-        
-        for (int i = 0; i < fakeUsers.length; i++) {
-            if (user.equals(fakeUsers[i]) && pass.equals(fakePass)) {
-                session.setAttribute("currentUser", fakeUsers[i]);
-                String url = request.getContextPath() + "/UserPage.jsp"; 
-                response.sendRedirect(url);
-            }
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            session.invalidate();
         }
+        String url = request.getContextPath() + "/HomePage.jsp";
+        response.sendRedirect(url);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

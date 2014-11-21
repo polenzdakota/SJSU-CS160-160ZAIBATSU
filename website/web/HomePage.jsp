@@ -37,7 +37,7 @@
 		<!-- Ebrima Bold is the font for the text on the image -->
 		<form action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Username" name="user_name">
+				<input type="text" class="form-control" placeholder="Username" name="username">
 				<input type="text" class="form-control" placeholder="Password" name="password">
 			</div>
 			<button type="login" class="custom-button btn btn-default label-success">Login</button>

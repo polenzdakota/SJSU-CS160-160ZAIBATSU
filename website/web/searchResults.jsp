@@ -84,7 +84,6 @@
                             int id = set.get(i).getId();
                             out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success\">" + set.get(i).getName() + "</li></a>");
                         }
-                        request.setAttribute("set", set);
                     %>
                 </ul>
             </div>
