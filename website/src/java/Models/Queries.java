@@ -25,6 +25,22 @@ public class Queries {
     PreparedStatement p;
     Statement statement;
     Connector con;
+    
+    
+    
+    public void createUser(Users user) throws SQLException{
+        String sql = "Insert into Users values (?,?)";
+        p = con.connection.prepareStatement(sql);
+        p.setInt(1, user.getUserId());
+        p.setString(2, user.getUserName());
+        
+        try{
+           int columns =  p.executeUpdate();
+        }catch(SQLException e){
+           System.out.println("SQL error" + e.getMessage());
+       }
+    
+    }
       /**
        *  Method will search data using REGEXP given a text field
        * @param s
