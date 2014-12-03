@@ -34,7 +34,7 @@
                         <div class="hoardr_icon">
                             <img alt="Brand" src="Images/Hoardr_Icon.png">
                         </div>
-                        <div>
+                        <div class="navbar-header navbar-fixed-top">
                             <%
                                 Boolean tmp = (Boolean) session.getAttribute("invalidFields");
                                 boolean invalid = (tmp != null) ? true : false;
@@ -42,6 +42,7 @@
                                 //methods for doing this.
                                 if (invalid) {
                                     out.print("<p>" + "User or password is incorrect!" + "</p>");
+                                    session.invalidate();
                                 }
                             %>
                         </div>
