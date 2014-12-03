@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
 import java.io.IOException;
@@ -13,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author cody
+ * This class checks the user provided credentials with our database
+ * @author 160 Zaibatsu
  */
 public class UserVerify extends HttpServlet {
 

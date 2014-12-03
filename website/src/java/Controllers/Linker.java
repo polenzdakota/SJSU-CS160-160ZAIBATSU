@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
 import Models.Card;
@@ -17,8 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author cody
+ * This class searches for a single card then returns those card attributes
+ * to the single card page
+ * @author 160 Zaibatsu
  */
 public class Linker extends HttpServlet {
 
@@ -34,7 +31,6 @@ public class Linker extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        String url = request.getContextPath();
         String id = request.getParameter("index");
         Queries searchField = new Queries();
         ResultSet results = searchField.oneCard(id);
@@ -51,17 +47,7 @@ public class Linker extends HttpServlet {
         request.setAttribute("subTypes", card.getCardsubtypes());
         request.setAttribute("text", card.getText());
         request.setAttribute("power", card.getCardPower());
-//        
-//        request.setAttribute(card, url);
-//        request.setAttribute(card, url);
-//        request.setAttribute(card, url);
-//        request.setAttribute(card, url);
-//        request.setAttribute(card, url);
-//        request.setAttribute(card, url);
-//        request.setAttribute(card, url);
-//        request.setAttribute(card, url);
-//        request.setAttribute(card, url);
-//        request.setAttribute(card, url);
+        
          request.getRequestDispatcher("/singleCardPage.jsp").forward(request, response);
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
 import Models.Card;
@@ -17,8 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author cody
+ * This class searches for a card and returns an array of all cards that
+ * are similar in name to the searched name
+ * @author 160 Zaibatsu
  */
 public class CardSearch extends HttpServlet {
 
@@ -40,24 +37,13 @@ public class CardSearch extends HttpServlet {
         ResultSet results = searchField.searchREGEXP(card);
         ArrayList<Card> cardSet = searchField.setCards(results);
 
-        if (searchDB(card)) {
+        if (!card.isEmpty()) {
             request.setAttribute("set", cardSet);
             request.getRequestDispatcher("/searchResults.jsp").forward(request, response);
         } else {
             url = url + "/HomePage.jsp";
             response.sendRedirect(url);
         }
-    }
-
-    /**
-     * Verify and finds card within the database.
-     *
-     * @param name The name of the card.
-     * @return
-     */
-    public boolean searchDB(String name) {
-        //Add db search should call a class located in models.
-        return !name.isEmpty();
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
