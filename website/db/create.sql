@@ -88,9 +88,8 @@ DROP TABLE IF EXISTS `mydb`.`Collection` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Collection` (
   `collection_id` INT NOT NULL,
-  `collection_card_id` INT NULL,
-  `quantity` INT NULL,
   `collection_userdecks_id` INT NULL,
+	`collection_table` VARCHAR(40) NULL,
   PRIMARY KEY (`collection_id`),
   INDEX `userdecks_id_idx` (`collection_userdecks_id` ASC),
   CONSTRAINT `userdecks_id`
@@ -107,7 +106,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mydb`.`User` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`User` (
-  `user_id` INT NOT NULL,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
   `user_collection_id` INT NULL,
   `user_login_name` VARCHAR(45) NULL,
   `user_login_password` VARCHAR(45) NULL,
@@ -127,7 +126,15 @@ CREATE TABLE IF NOT EXISTS `mydb`.`User` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+DROP TRIGGER IF EXISTS AddCollection;
+DELIMITER // 
+CREATE TRIGGER AddCollection
+	AFTER INSERT ON User 
+	FOR EACH ROW 
+	BEGIN
+		INSERT INTO Collection (collection_id,collection_table) values (NEW.user_id,NEW.user_login_name);
+	END; //
+DELIMITER ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
