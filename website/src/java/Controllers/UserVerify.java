@@ -33,20 +33,45 @@ public class UserVerify extends HttpServlet {
         String user = request.getParameter("username").toLowerCase();
         String pass = request.getParameter("password").toLowerCase();
         //Credentials are not case sensitive for now
-        String fakeUsers[] = {"dakota", "chris", "ryan", "sean", "sonica"};
-        String fakePass = "zaibatsu";
         HttpSession session = request.getSession();
-        
-        //Currently any of our names will work with the password Zaibatsu
-        for (int i = 0; i < fakeUsers.length; i++) {
-            if (user.equals(fakeUsers[i]) && pass.equals(fakePass)) {
-                //Add getUser info call to quaries here then pass
-                //attributes either to UserPage or to the session
-                session.setAttribute("currentUser", fakeUsers[i]);
-                String url = request.getContextPath() + "/UserPage.jsp"; 
-                response.sendRedirect(url);
-            }
+
+        if (!checkUserID(user) || !checkPass(user, pass)) {
+            session.setAttribute("invalidFields", true);
+            String url = request.getContextPath() + "/HomePage.jsp";
+            response.sendRedirect(url);
+        } else {
+            session.setAttribute("currentUser", user);
+            String url = request.getContextPath() + "/UserPage.jsp";
+            response.sendRedirect(url);
         }
+    }
+
+    /**
+     * Checks to see if the username matches a user in our database
+     *
+     * @param user the username provided
+     * @return false if the user is not in the database
+     */
+    protected boolean checkUserID(String user) {
+        //TODO EVERYTHINGGGGGGGGGGGGGGG!!!!!!!!!!!!!!!!!!!!
+        return true;
+    }
+
+    /**
+     * Checks to see if the password provided matches the user name in out
+     * database
+     *
+     * @param user the username provided
+     * @param pass the password provided
+     * @return false if the password does not match the user
+     */
+    protected boolean checkPass(String user, String pass) {
+        //Added this statement for testing. Enetering password as "test"
+        //is equivilant to entering an incorrect password.
+        if (pass.equals("test")) {
+            return false;
+        }
+        return true;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
