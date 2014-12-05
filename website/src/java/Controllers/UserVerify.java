@@ -64,7 +64,7 @@ public class UserVerify extends HttpServlet {
     protected boolean checkPass(String user, String pass) {
         //Added this statement for testing. Enetering password as "test"
         //is equivilant to entering an incorrect password.
-        if (pass.equals("test")) {
+        if (pass.equals(pass)) {
             return false;
         }
         return true;

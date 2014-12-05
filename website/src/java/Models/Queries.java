@@ -29,7 +29,7 @@ public class Queries {
     Connector con;
     
     public ResultSet collectionJoin(String username)throws SQLException{
-        String sql = "Select * from Cards Inner Join ? on Cards.card_id = ?.card_collection_id;";
+        String sql = "Select * from Cards Inner Join ? on Cards.card_id = ?.card_collection_id";
         p = con.connection.prepareStatement(sql);
         p.setString(1, username);
         p.setString(2, username);
@@ -43,7 +43,7 @@ public class Queries {
     }
     public void createCollection(String name)throws SQLException{
         String sql = "CREATE TABLE ? (Entry int , card_collection int, PRIMARY KEY(Entry),"
-        + "FOREIGN KEY (card_collection) REFERENCES Cards(card_id));";
+        + "FOREIGN KEY (card_collection) REFERENCES Cards(card_id))";
         p = con.connection.prepareCall(sql);
         p.setString(1, name);
         try{
@@ -80,6 +80,20 @@ public class Queries {
          
          return encryption;
      }
+     
+     public String retrievePassword(int userid) throws SQLException{
+         String pass = null;
+         String sql = "Select user_login_password where user_id = ?";
+         p = con.connection.prepareStatement(sql);
+         p.setInt(1,userid);
+         try{
+            rs = p.executeQuery();
+            pass = rs.getString("user_login_password");
+         }catch(SQLException e){
+             System.out.println("Password retrival failed :  "+ e.getMessage());
+         }
+         return pass;
+     }
       /**
        *  Method will search data using REGEXP given a text field
        * @param s
@@ -108,7 +122,7 @@ public class Queries {
        con = new Connector();
        con.setConnection();
        try{
-           String sql = "SELECT * from Cards where card_id = ?;";
+           String sql = "SELECT * from Cards where card_id = ?";
            p = con.connection.prepareStatement(sql);
            p.setString(1, s);
            System.out.println(p);
