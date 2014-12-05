@@ -28,11 +28,24 @@ public class Queries {
     Statement statement;
     Connector con;
     
-    
+    public ResultSet collectionJoin(String username)throws SQLException{
+        String sql = "Select * from Cards Inner Join ? on Cards.card_id = ?.card_collection_id;";
+        p = con.connection.prepareStatement(sql);
+        p.setString(1, username);
+        p.setString(2, username);
+        try{
+            rs = p.executeQuery();
+            
+        }catch(SQLException e){
+            System.out.println("Error message for this query is " + e.getMessage());
+        }
+        return rs;
+    }
     public void createCollection(String name)throws SQLException{
-        String sql = "CREATE TABLE " + name + "(Entry int , card_collection int, PRIMARY KEY(Entry),"
+        String sql = "CREATE TABLE ? (Entry int , card_collection int, PRIMARY KEY(Entry),"
         + "FOREIGN KEY (card_collection) REFERENCES Cards(card_id));";
         p = con.connection.prepareCall(sql);
+        p.setString(1, name);
         try{
             p.executeQuery();
         }catch(SQLException e){
@@ -74,9 +87,7 @@ public class Queries {
        * @throws SQLException 
        */
      public ResultSet searchREGEXP(String s) throws SQLException{
-       
-       con = new Connector();
-       con.setConnection();
+
        try{
            String sql = "SELECT * from Cards where card_name REGEXP ? order by card_name;";
            p = con.connection.prepareStatement(sql);
@@ -111,9 +122,10 @@ public class Queries {
        return rs;
      }
      public void insert(int cardId,String username) throws SQLException{
-         String sql = "Insert into "+ username + "(card_collection_id) values(?)";
+         String sql = "Insert into ? (card_collection_id) values(?)";
          p = con.connection.prepareStatement(sql);
-         p.setInt(1, cardId);
+         p.setString(1, username);
+         p.setInt(2,cardId);
          try{
             int columns =  p.executeUpdate();
          }catch(SQLException e){
