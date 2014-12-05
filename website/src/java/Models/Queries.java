@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 /**
  *
  * @author chris
@@ -27,12 +29,23 @@ public class Queries {
     Connector con;
     
     
+    public void createCollection(String name)throws SQLException{
+        String sql = "CREATE TABLE " + name + "(Entry int , card_collection int, PRIMARY KEY(Entry),"
+        + "FOREIGN KEY (card_collection) REFERENCES Cards(card_id));";
+        p = con.connection.prepareCall(sql);
+        try{
+            p.executeQuery();
+        }catch(SQLException e){
+            System.out.println("Error is " + e.getMessage());
+        }
+        
+    }
     
     public void createUser(Users user) throws SQLException{
-        String sql = "Insert into Users values (?,?)";
+        String sql = "Insert into Users(user_login_name,user_login_password) values (?,?)";
         p = con.connection.prepareStatement(sql);
-        p.setInt(1, user.getUserId());
-        p.setString(2, user.getUserName());
+        p.setString(1, user.getUserName());
+        p.setString(2, user.getUserPassWord());
         
         try{
            int columns =  p.executeUpdate();
@@ -41,6 +54,19 @@ public class Queries {
        }
     
     }
+    
+     public String hashPassword(String password) throws NoSuchAlgorithmException{
+         MessageDigest hashpass = null;
+         try{
+         hashpass = MessageDigest.getInstance("SHA-256");
+         }catch(NoSuchAlgorithmException e){
+             System.out.println("This algorithm doesn't exist " + e.getMessage());
+         }
+         hashpass.update(password.getBytes());
+         String encryption = new String(hashpass.digest());
+         
+         return encryption;
+     }
       /**
        *  Method will search data using REGEXP given a text field
        * @param s
@@ -84,6 +110,17 @@ public class Queries {
       
        return rs;
      }
+     public void insert(int cardId,String username) throws SQLException{
+         String sql = "Insert into "+ username + "(card_collection_id) values(?)";
+         p = con.connection.prepareStatement(sql);
+         p.setInt(1, cardId);
+         try{
+            int columns =  p.executeUpdate();
+         }catch(SQLException e){
+             System.out.println("This could not insert" + e.getMessage());
+         }
+     }
+     
        
    public ArrayList<Card> setCards(ResultSet rs) throws SQLException{
        ArrayList<Card> list;
