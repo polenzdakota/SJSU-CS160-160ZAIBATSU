@@ -29,7 +29,7 @@ public class Queries {
     Connector con;
     public Queries(){
         this.con = new Connector();
-
+        con.setConnection();
     }
     public ResultSet collectionJoin(String username)throws SQLException{
         String sql = "Select * from Cards Inner Join ? on Cards.card_id = ?.card_collection_id";
@@ -119,8 +119,7 @@ public class Queries {
        * @throws SQLException 
        */
      public ResultSet searchREGEXP(String s) throws SQLException{
-         
-         con.setConnection();
+        
        try{
            String sql = "SELECT * from Cards where card_name REGEXP ? order by card_name;";
            p = con.connection.prepareStatement(sql);
@@ -138,7 +137,7 @@ public class Queries {
      }
      public ResultSet oneCard(String s) throws SQLException{
  
-       con.setConnection();
+      
        try{
            String sql = "SELECT * from Cards where card_id = ?";
            p = con.connection.prepareStatement(sql);
@@ -154,6 +153,7 @@ public class Queries {
        return rs;
      }
      public void insert(int cardId,String username) throws SQLException{
+         
          String sql = "Insert into ? (card_collection_id) values(?)";
          p = con.connection.prepareStatement(sql);
          p.setString(1, username);
