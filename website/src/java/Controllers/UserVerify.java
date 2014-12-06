@@ -41,7 +41,7 @@ public class UserVerify extends HttpServlet {
         //Credentials are not case sensitive for now
         HttpSession session = request.getSession();
 
-        if (!checkPass(user, pass)) {
+        if (!checkUser(user) || !checkPass(user, pass)) {
             session.setAttribute("invalidFields", true);
             String url = request.getContextPath() + "/HomePage.jsp";
             response.sendRedirect(url);
@@ -53,6 +53,10 @@ public class UserVerify extends HttpServlet {
             String url = request.getContextPath() + "/UserPage.jsp";
             response.sendRedirect(url);
         }
+    }
+    
+    protected boolean checkUser(String name) throws SQLException {
+        return dbAccessor.userExists(name);
     }
 
     /**

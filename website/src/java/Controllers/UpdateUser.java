@@ -4,18 +4,24 @@
  */
 package Controllers;
 
+import Models.Queries;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author cody
  */
 public class UpdateUser extends HttpServlet {
+
+    Queries dbAccessor = new Queries();
+    HttpSession session;
 
     /**
      * Processes requests for both HTTP
@@ -29,13 +35,15 @@ public class UpdateUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            session = request.getSession();
     }
-    
-    protected boolean addCardToCollection(String name) {
-        return false;
+
+    protected boolean addCardToCollection(int cardId) throws SQLException {
+        dbAccessor.insert(cardId, (String) session.getAttribute("user"));
+        return true;
     }
-    
-    protected boolean deleteCardFromCollection(String name){
+
+    protected boolean deleteCardFromCollection(String name) {
         return false;
     }
 
