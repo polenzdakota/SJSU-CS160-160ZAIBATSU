@@ -1,7 +1,14 @@
 package Controllers;
 
+import Models.Card;
+import Models.Queries;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +17,12 @@ import javax.servlet.http.HttpSession;
 
 /**
  * This class checks the user provided credentials with our database
+ *
  * @author 160 Zaibatsu
  */
 public class UserVerify extends HttpServlet {
+
+    Queries dbAccessor = new Queries();
 
     /**
      * Processes requests for both HTTP
@@ -25,32 +35,24 @@ public class UserVerify extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         String user = request.getParameter("username").toLowerCase();
         String pass = request.getParameter("password").toLowerCase();
         //Credentials are not case sensitive for now
         HttpSession session = request.getSession();
 
-        if (!checkUserID(user) || !checkPass(user, pass)) {
+        if (!checkPass(user, pass)) {
             session.setAttribute("invalidFields", true);
             String url = request.getContextPath() + "/HomePage.jsp";
             response.sendRedirect(url);
         } else {
+            ResultSet set = dbAccessor.collectionJoin(user);
+            ArrayList<Card> cardSet = dbAccessor.setCards(set);
             session.setAttribute("currentUser", user);
+            session.setAttribute("userCards", cardSet);
             String url = request.getContextPath() + "/UserPage.jsp";
             response.sendRedirect(url);
         }
-    }
-
-    /**
-     * Checks to see if the username matches a user in our database
-     *
-     * @param user the username provided
-     * @return false if the user is not in the database
-     */
-    protected boolean checkUserID(String user) {
-        //TODO EVERYTHINGGGGGGGGGGGGGGG!!!!!!!!!!!!!!!!!!!!
-        return true;
     }
 
     /**
@@ -61,13 +63,13 @@ public class UserVerify extends HttpServlet {
      * @param pass the password provided
      * @return false if the password does not match the user
      */
-    protected boolean checkPass(String user, String pass) {
-        //Added this statement for testing. Enetering password as "test"
-        //is equivilant to entering an incorrect password.
-        if (pass.equals(pass)) {
+    protected boolean checkPass(String user, String pass) throws SQLException {
+
+        if (pass.isEmpty()) {
             return false;
         }
-        return true;
+        String givenPass = dbAccessor.retrievePassword(user);
+        return (givenPass.equals(pass));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -83,7 +85,11 @@ public class UserVerify extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserVerify.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -98,7 +104,11 @@ public class UserVerify extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserVerify.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

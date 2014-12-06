@@ -82,7 +82,7 @@ public class Queries {
      }
      
      public String retrievePassword(String username) throws SQLException{
-         String pass = null;
+         String pass = "";
          String sql = "Select user_login_password from User where user_login_name = ?";
          p = con.connection.prepareStatement(sql);
          p.setString(1,username);
