@@ -27,6 +27,10 @@ public class Queries {
     PreparedStatement p;
     Statement statement;
     Connector con;
+    public Queries(){
+        this.con = new Connector();
+
+    }
     public ResultSet collectionJoin(String username)throws SQLException{
         String sql = "Select * from Cards Inner Join ? on Cards.card_id = ?.card_collection_id";
         p = con.connection.prepareStatement(sql);
@@ -133,8 +137,7 @@ public class Queries {
        return rs;
      }
      public ResultSet oneCard(String s) throws SQLException{
-         
-       con = new Connector();
+ 
        con.setConnection();
        try{
            String sql = "SELECT * from Cards where card_id = ?";
