@@ -81,6 +81,19 @@ public class Queries {
          return encryption;
      }
      
+     public boolean userExists(String username)throws SQLException{
+     String sql = "Select * from User where user_login_name = ?";
+     p = con.connection.prepareStatement(sql);
+     try{
+         rs = p.executeQuery();
+         if(!rs.next()){
+             return false;
+         }
+     }catch(SQLException e){
+         System.out.println("Another error: " + e.getMessage());
+     }
+        return true;
+     }
      public String retrievePassword(String username) throws SQLException{
          String pass = "";
          String sql = "Select user_login_password from User where user_login_name = ?";
@@ -89,6 +102,7 @@ public class Queries {
          try{
             rs = p.executeQuery();
             pass = rs.getString("user_login_password");
+            
          }catch(SQLException e){
              System.out.println("Password retrival failed :  "+ e.getMessage());
          }
