@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 /**
  *
  * @author chris
@@ -25,6 +27,91 @@ public class Queries {
     PreparedStatement p;
     Statement statement;
     Connector con;
+    public Queries(){
+        this.con = new Connector();
+
+    }
+    public ResultSet collectionJoin(String username)throws SQLException{
+        String sql = "Select * from Cards Inner Join ? on Cards.card_id = ?.card_collection_id";
+        p = con.connection.prepareStatement(sql);
+        p.setString(1, username);
+        p.setString(2, username);
+        try{
+            rs = p.executeQuery();
+            
+        }catch(SQLException e){
+            System.out.println("Error message for this query is " + e.getMessage());
+        }
+        return rs;
+    }
+    public void createCollection(String name)throws SQLException{
+        String sql = "CREATE TABLE ? (Entry int , card_collection int, PRIMARY KEY(Entry),"
+        + "FOREIGN KEY (card_collection) REFERENCES Cards(card_id))";
+        p = con.connection.prepareCall(sql);
+        p.setString(1, name);
+        try{
+            p.executeQuery();
+        }catch(SQLException e){
+            System.out.println("Error is " + e.getMessage());
+        }
+        
+    }
+    
+    public void createUser(Users user) throws SQLException{
+        String sql = "Insert into Users(user_login_name,user_login_password) values (?,?)";
+        p = con.connection.prepareStatement(sql);
+        p.setString(1, user.getUserName());
+        p.setString(2, user.getUserPassWord());
+        
+        try{
+           int columns =  p.executeUpdate();
+        }catch(SQLException e){
+           System.out.println("SQL error" + e.getMessage());
+       }
+    
+    }
+    
+     public String hashPassword(String password) throws NoSuchAlgorithmException{
+         MessageDigest hashpass = null;
+         try{
+         hashpass = MessageDigest.getInstance("SHA-256");
+         }catch(NoSuchAlgorithmException e){
+             System.out.println("This algorithm doesn't exist " + e.getMessage());
+         }
+         hashpass.update(password.getBytes());
+         String encryption = new String(hashpass.digest());
+         
+         return encryption;
+     }
+     
+     public boolean userExists(String username)throws SQLException{
+     String sql = "Select * from User where user_login_name = ?";
+     p = con.connection.prepareStatement(sql);
+     try{
+         rs = p.executeQuery();
+         if(!rs.next()){
+             return false;
+         }
+     }catch(SQLException e){
+         System.out.println("Another error: " + e.getMessage());
+     }
+        return true;
+     }
+     public String retrievePassword(String username) throws SQLException{
+         String pass = "";
+         String sql = "Select user_login_password from User where user_login_name = ?";
+         con.setConnection();
+         p = con.connection.prepareStatement(sql);
+         p.setString(1,username);
+         try{
+            rs = p.executeQuery();
+            pass = rs.getString("user_login_password");
+            
+         }catch(SQLException e){
+             System.out.println("Password retrival failed :  "+ e.getMessage());
+         }
+         return pass;
+     }
       /**
        *  Method will search data using REGEXP given a text field
        * @param s
@@ -32,9 +119,8 @@ public class Queries {
        * @throws SQLException 
        */
      public ResultSet searchREGEXP(String s) throws SQLException{
-       
-       con = new Connector();
-       con.setConnection();
+         con = new Connector();
+         con.setConnection();
        try{
            String sql = "SELECT * from Cards where card_name REGEXP ? order by card_name;";
            p = con.connection.prepareStatement(sql);
@@ -47,9 +133,38 @@ public class Queries {
        }catch(SQLException e){
            System.out.println("SQL error" + e.getMessage());
        }
+       
+       return rs;
+     }
+     public ResultSet oneCard(String s) throws SQLException{
+ 
+       con.setConnection();
+       try{
+           String sql = "SELECT * from Cards where card_id = ?";
+           p = con.connection.prepareStatement(sql);
+           p.setString(1, s);
+           System.out.println(p);
+           rs = p.executeQuery();
+      
+      
+       }catch(SQLException e){
+           System.out.println("SQL error" + e.getMessage());
+       }
       
        return rs;
-   }
+     }
+     public void insert(int cardId,String username) throws SQLException{
+         String sql = "Insert into ? (card_collection_id) values(?)";
+         p = con.connection.prepareStatement(sql);
+         p.setString(1, username);
+         p.setInt(2,cardId);
+         try{
+            int columns =  p.executeUpdate();
+         }catch(SQLException e){
+             System.out.println("This could not insert" + e.getMessage());
+         }
+     }
+     
        
    public ArrayList<Card> setCards(ResultSet rs) throws SQLException{
        ArrayList<Card> list;
@@ -97,3 +212,4 @@ public class Queries {
    }
   
 }
+

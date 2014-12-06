@@ -119,7 +119,7 @@ public class Queries {
        * @throws SQLException 
        */
      public ResultSet searchREGEXP(String s) throws SQLException{
-         con = new Connector();
+         
          con.setConnection();
        try{
            String sql = "SELECT * from Cards where card_name REGEXP ? order by card_name;";
