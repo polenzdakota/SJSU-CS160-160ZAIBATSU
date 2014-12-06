@@ -81,11 +81,11 @@ public class Queries {
          return encryption;
      }
      
-     public String retrievePassword(int userid) throws SQLException{
+     public String retrievePassword(String username) throws SQLException{
          String pass = null;
-         String sql = "Select user_login_password where user_id = ?";
+         String sql = "Select user_login_password from User where user_login_name = ?";
          p = con.connection.prepareStatement(sql);
-         p.setInt(1,userid);
+         p.setString(1,username);
          try{
             rs = p.executeQuery();
             pass = rs.getString("user_login_password");
