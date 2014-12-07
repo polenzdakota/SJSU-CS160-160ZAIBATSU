@@ -28,8 +28,7 @@ body {
 
 .single-card-image {
 	padding:10px;
-
-	width:30%;
+	width:50%;
 	float: left;
 
 }
@@ -37,9 +36,9 @@ body {
 .single-card-text {
 	margin-top:-60%;
 	margin-right:-20%;
-	margin-left: 10%;
+	margin-left: 100%;
 	float: right;
-	width: 85%;
+	width: 80%;
 
 }
 
