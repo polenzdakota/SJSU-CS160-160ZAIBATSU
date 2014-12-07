@@ -1,6 +1,6 @@
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="Models.Card"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,7 +32,7 @@
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="HomePage.jsp">
       	<div class="hoardr_icon">
         	<img alt="Brand" src="Images/Hoardr_Icon.png">
       	</div>
@@ -58,25 +58,36 @@
     				</a>
     			</div>
     			<div class="single-card-text">
-    				<ul>
-                                    <%
+    				<div class="panel panel-default">
+						<!-- Default panel contents -->
+						  <div class="panel-heading "><b>CARD INFORMATION</b></div>
+						  <!-- List group -->
+						  <ul class="list-group">
+							                                    <%
                                     String set = request.getParameter("set");
                                     System.out.println(set);
                                     %>
-    					<li class:"card-info"> Name: ${name}</li>
-    					<li class:"card-info"> Colors: ${color}</li>
-    					<li class:"card-info"> Cost: ${cost}</li>
-    					<li class:"card-info"> CMC: ${cmc}</li>
-    					<li class:"card-info"> SuperTypes: ${super_type}</li>
-    					<li class:"card-info"> Types: ${types}</li>
-    					<li class:"card-info"> SubTypes: ${subTypes}</li>
-    					<li class:"card-info"> Text:  ${text}</li>
-    					<li class:"card-info"> Power: ${power}</li>
-    					<li class:"card-info"> Toughness: ${toughness}</li>
-    				</ul>
+    					<li class="list-group-item"> <b>Name:</b> ${name}</li>
+    					<li class="list-group-item"> <b>Colors:</b> ${color}</li>
+    					<li class="list-group-item"> <b>Cost:</b> ${cost}</li>
+    					<li class="list-group-item"> <b>CMC:</b> ${cmc}</li>
+    					<li class="list-group-item"> <b>SuperTypes:</b> ${super_type}</li>
+    					<li class="list-group-item"> <b>Types:</b> ${types}</li>
+    					<li class="list-group-item"> <b>SubTypes:</b> ${subTypes}</li>
+    					<li class="list-group-item"> <b>Text:</b>  ${text}</li>
+    					<li class="list-group-item"> <b>Power:</b> ${power}</li>
+    					<li class="list-group-item"> <b>Toughness:</b> ${toughness}</li>
+						  </ul>
+						</div>
     			</div>
   			</div>
 		</div>
+			<!-- TODO --->
+			<!-- make this only show up if they are logged in -->
+			<div class="input-group add-to-coll add-to-collection-form">
+				<input type="text" class="form-control" placeholder="Quantity">
+				<button type="add_to_collection" class="custom-button btn btn-default label-success same-line">Add to Collection</button>
+			</div>
 	</div>
 	
      

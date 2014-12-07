@@ -29,24 +29,38 @@ body {
 .single-card-image {
 	padding:10px;
 	width:50%;
-	float:left;
+	float: left;
+	margin-left: -10%;
 
 }
 
 .single-card-text {
 	margin-top:-60%;
-	margin-right:30%;
+	margin-right:-20%;
+	padding-top: 14%;
+	padding-left: 10%;
 	float: right;
+	width: 100%;
 }
 
 .hello-world {
 	width: 80%;
-	
+	margin-top:-8%;
 }
 
-li {
-	padding: 5px;
-	color: white;
-	font-weight:bold;
-	
+.card_attribute {
+	font-weight: bold;
 }
+
+.same-line  {
+	float:right;
+}
+
+.add-to-collection-form {
+	padding-right: 2.5%;
+	float:right;
+	width:10%;
+}
+
+
+
