@@ -39,12 +39,12 @@ public class UserVerify extends HttpServlet {
             throws ServletException, IOException, SQLException {
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
-        //Credentials are not case sensitive for now
         HttpSession session = request.getSession();
 
         if (!checkUser(user) || !checkPass(user, pass)) {
             session.setAttribute("invalidFields", true);
             String url = request.getContextPath() + "/HomePage.jsp";
+            dbAccessor.closeData();
             response.sendRedirect(url);
         } else {
             ResultSet set = dbAccessor.collectionJoin(user);
@@ -52,6 +52,7 @@ public class UserVerify extends HttpServlet {
             session.setAttribute("currentUser", user);
             session.setAttribute("userCards", cardSet);
             String url = request.getContextPath() + "/UserPage.jsp";
+            dbAccessor.closeData();
             response.sendRedirect(url);
         }
     }
