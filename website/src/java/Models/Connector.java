@@ -24,7 +24,7 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-public class Connector implements Serializable{
+public final class Connector implements Serializable{
     
    Connection connection;
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
@@ -33,16 +33,14 @@ public class Connector implements Serializable{
    static final String USER = "root";
    static final String PASS = "";
    
-   public Connector(){
-            connection = null;
-   }
+   
    
    public void setConnection(){
          try{
         
         Class.forName(JDBC_DRIVER);
         connection = DriverManager.getConnection(DB_URL,USER,PASS);
-        System.out.println("Database connected");
+        System.out.println("Database connected^^^^^^^^^");
         //rs = statement.executeQuery("Select card_id,card_name from Cards where card_id=0");
          }
         catch(ClassNotFoundException e){
