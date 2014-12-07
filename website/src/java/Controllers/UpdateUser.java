@@ -40,6 +40,7 @@ public class UpdateUser extends HttpServlet {
 
     protected boolean addCardToCollection(int cardId) throws SQLException {
         dbAccessor.insert(cardId, (String) session.getAttribute("user"));
+        dbAccessor.closeData();
         return true;
     }
 

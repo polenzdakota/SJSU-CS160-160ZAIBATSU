@@ -39,9 +39,11 @@ public class CardSearch extends HttpServlet {
 
         if (!card.isEmpty()) {
             request.setAttribute("set", cardSet);
+            searchField.closeData();
             request.getRequestDispatcher("/searchResults.jsp").forward(request, response);
         } else {
             url = url + "/HomePage.jsp";
+            searchField.closeData();
             response.sendRedirect(url);
         }
     }
