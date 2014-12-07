@@ -44,6 +44,10 @@ public class Card {
         cmc = "4";
     }
 
+    Card(String name, int id, int colors, String card_cost, int card_cmc, String card_supertypes, String card_cardtypes, String card_subtypes, String card_text, String card_power, String card_toughness, String card_loyalty, String image) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
     public String getName() {
         return name;
     }

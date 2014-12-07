@@ -30,8 +30,8 @@ public final class Connector implements Serializable{
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
    static final String DB_URL = "jdbc:mysql://localhost/mydb"; //this can be any database
 
-   static final String USER = "hoardr";
-   static final String PASS = "zaibatsu";
+   static final String USER = "root";
+   static final String PASS = "";
    
    
    
