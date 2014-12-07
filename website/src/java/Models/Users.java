@@ -10,21 +10,17 @@ package Models;
  * @author chris
  */
 public class Users {
-    private final int userId;
     private final String userName;
     private int userCollectionId;
     private String userPassword;
-    public Users(int id, String userName){
-        this. userId = id;
+    public Users(String userName){
         this. userName = userName;
     }
     
     public String getUserName(){
         return userName;
     }
-    public int getUserId(){
-        return userId;
-    }
+   
     public void setUserCollectionId(int userCollectionId){
         this.userCollectionId = userCollectionId;
     }

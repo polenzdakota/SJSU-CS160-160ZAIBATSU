@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.Card;
 import Models.Queries;
+import Models.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -36,8 +37,8 @@ public class UserVerify extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        String user = request.getParameter("username").toLowerCase();
-        String pass = request.getParameter("password").toLowerCase();
+        String user = request.getParameter("username");
+        String pass = request.getParameter("password");
         //Credentials are not case sensitive for now
         HttpSession session = request.getSession();
 

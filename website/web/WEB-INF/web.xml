@@ -32,6 +32,10 @@
         <servlet-name>LogOut</servlet-name>
         <servlet-class>Controllers.LogOut</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateUser</servlet-name>
+        <servlet-class>Controllers.UpdateUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserVerify</servlet-name>
         <url-pattern>/UserVerify</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>LogOut</servlet-name>
         <url-pattern>/LogOut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUser</servlet-name>
+        <url-pattern>/UpdateUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
