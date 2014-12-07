@@ -30,12 +30,12 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="HomePage.jsp">
-                        <div class="hoardr_icon">
+                    <a class="navbar-brand">
+                        <div class="hoardr_icon button_to_HomePage">
                             <img alt="Brand" src="Images/Hoardr_Icon.png">
                         </div>
                         <div class="navbar-header navbar-fixed-top">
-                            <%
+							<%
                                 Boolean tmp = (Boolean) session.getAttribute("invalidFields");
                                 boolean invalid = (tmp != null) ? true : false;
                                 //This is super ghetto. Going to look up better
@@ -45,6 +45,7 @@
                                     session.invalidate();
                                 }
                             %>
+
                         </div>
                         <!-- Ebrima Bold is the font for the text on the image -->
                         <form action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
@@ -64,9 +65,9 @@
 				<div class="navbar-header">
 					<ul class="nav nav-tabs nav-justified">
 						<li><a href="HomePage.jsp">Search</a></li>
-						<li><a href="HomePage.jsp">Collection</a></li>
-						<li><a href="HomePage.jsp">Decks</a></li>
-						<li><a href="HomePage.jsp">Account</a></li>
+						<li><a href="UserCollection.jsp">Collection</a></li>
+						<li><a href="UserDecks.jsp">Decks</a></li>
+						<li><a href="UserInformation.jsp">Account</a></li>
 					</ul>
 				</div>
 			</div>
