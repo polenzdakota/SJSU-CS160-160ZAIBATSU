@@ -7,7 +7,9 @@ package Controllers;
 import Models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -72,8 +74,10 @@ public class UpdateUser extends HttpServlet {
      * @param name the name of the card
      * @return true if the card was deleted
      */
-    protected boolean deleteCardFromCollection(String name) {
-        return false;
+    protected boolean deleteCardFromCollection(int cardId) throws SQLException {
+        String table = (String) session.getAttribute("currentUser");
+        dbAccessor.decrementCard(cardId, 1, table);
+        return true;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
