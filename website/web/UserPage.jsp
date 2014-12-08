@@ -48,7 +48,7 @@
                         </div>
                         <div class="navbar-header navbar-fixed-top">
                         
-                        <form action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
+                        <form action="${pageContext.request.contextPath}/LogOut" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
                             <p class= "username-text">Logged in as: ${currentUser}</p>
        						 <form action="${pageContext.request.contextPath}/LogOut" class="logout-button">	
             					<button type="logout" class="custom-button btn btn-default label-success">Logout</button>
