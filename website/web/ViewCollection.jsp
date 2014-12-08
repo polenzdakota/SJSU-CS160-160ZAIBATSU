@@ -26,7 +26,7 @@
         <title>User Home Page</title>
     </head>
     <body>	
-
+		<!-- Start Navbar -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -36,9 +36,9 @@
                         </div>
                         <div class="navbar-header navbar-fixed-top">
                         
-                        <form action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
+                        <form method="post" action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
                             <p class= "username-text">Logged in as: ${currentUser}</p>
-       						 <form action="${pageContext.request.contextPath}/LogOut" class="logout-button">	
+       						 <form method="post" action="${pageContext.request.contextPath}/LogOut" class="logout-button">	
             					<button type="logout" class="custom-button btn btn-default label-success">Logout</button>
         					</form>
                         </form> 	
@@ -60,41 +60,44 @@
 				</div>
 			</div>
 		</nav>
+		<!-- END Navbar -->
 		
-			<div class="single-card-page">
-		<div class="row">
-  			<div class="hello-world">
-  				<div class="single-card-image">
-   				 	<a href="#" class="cardpicture">
-   				 		<img src="Images/CardPictures/AjaniSteadfast.jpg" alt="AjaniSteadfast">
-    				</a>
-    			</div>
-    			<div class="single-card-text">
-    				<div class="panel panel-default">
-						<!-- Default panel contents -->
-						  <div class="panel-heading "><b>CARD INFORMATION</b></div>
-						  <!-- List group -->
-						  <ul class="list-group">
-							                                    <%
-                                    String set = request.getParameter("set");
-                                    System.out.println(set);
-                                    %>
-    					<li class="list-group-item"> <b>Name:</b> ${name}</li>
+		
+		<!-- Start view collection page -->
+		<div class="view-collection-page">
+
+			<div class="panel panel-default view-collection-panel">
+				<!-- Statistics -->
+  				<div class="panel-heading">
+   					<h3 class="panel-title">Collection Statistics</h3>
+  				</div>
+  				<div class="panel-body">
+    				<ul class="list-group">
+						<li class="list-group-item"> <b>Number of Cards:</b> ${numberOfCards}</li>
+    					<li class="list-group-item"> <b>Average Cost:</b> ${averageCost}</li>
     					<li class="list-group-item"> <b>Colors:</b> ${color}</li>
-    					<li class="list-group-item"> <b>Cost:</b> ${cost}</li>
-    					<li class="list-group-item"> <b>CMC:</b> ${cmc}</li>
-    					<li class="list-group-item"> <b>SuperTypes:</b> ${super_type}</li>
-    					<li class="list-group-item"> <b>Types:</b> ${types}</li>
-    					<li class="list-group-item"> <b>SubTypes:</b> ${subTypes}</li>
-    					<li class="list-group-item"> <b>Text:</b>  ${text}</li>
-    					<li class="list-group-item"> <b>Power:</b> ${power}</li>
-    					<li class="list-group-item"> <b>Toughness:</b> ${toughness}</li>
-						  </ul>
-						</div>
-    			</div>
-  			</div>
+					</ul>
+  				</div>
+			</div>
+			
+			<div class="results">
+                <ul class="list-group">
+
+                    <%
+                        Object tmp = request.getAttribute("set");
+                        String toPage = request.getContextPath() + "/Linker";
+                        ArrayList<Card> set = (ArrayList<Card>) tmp;
+
+                        for (int i = 0; i < set.size(); i++) {
+                            int id = set.get(i).getId();
+                            out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success\">" + set.get(i).getName() + "</li></a>");
+                        }
+                    %>
+                </ul>
+            </div>
+			
 		</div>
-		
+		<!-- End view collection page -->
 		
 		
 		
