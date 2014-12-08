@@ -80,13 +80,7 @@ body {
 	margin-top: -30%;
 }
 
-.create-account-form-nav {
-	float: right;
-	margin-right: -12%;
-	background-color: red;
-	z-index: -1;
-	
-}
+
 
 .create-account-form-text {
 	font-weight: bold;
