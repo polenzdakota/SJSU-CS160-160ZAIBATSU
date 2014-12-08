@@ -50,15 +50,13 @@
 
     	<div class="create-account-page">
 			<div class="input-group create-account-form">
-                             <form action="${pageContext.request.contextPath}/CreateUser.java"  role="createAccount">
+                             <form action="${pageContext.request.contextPath}/CreateUser"  role="createAccount">
   					<p><a class="create-account-form-text">Username:</a><input type="text" class="form-control" placeholder="Enter Username" name="user"></p>
   					<p><a class="create-account-form-text">Password:</a><input type="text" class="form-control" placeholder="Enter Password" name="pass"></p>
   					<p><a class="create-account-form-text">Verified Password:</a><input type="text" class="form-control" placeholder="Verify Password" name="newVerifiedPassword"></p>
                              <button type="createAccount" class="custom-button btn btn-default label-success " name="createAccount">Create Account!</button>
                              </form>	
 			</div>
-			
-
 		</div>
     
     

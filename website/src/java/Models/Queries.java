@@ -85,12 +85,12 @@ public class Queries {
         
     }
     public void createCollection(String name)throws SQLException{
-        String sql = "CREATE TABLE ? (card_id int, quantity int, PRIMARY KEY(card_id),FOREIGN KEY (card_id) REFERENCES Cards(card_id))";
-        p = con.connection.prepareCall(sql);
-        p.setString(1, name);
+        String sql = "CREATE TABLE " + name + " (card_id int, quantity int, PRIMARY KEY(card_id),FOREIGN KEY (card_id) REFERENCES Cards(card_id))";
+        p = con.connection.prepareStatement(sql);
+        //p.setString(1, name);
        
         try{
-            p.executeQuery();
+            p.execute();
         }catch(SQLException e){
             System.out.println("Error is " + e.getMessage());
         }
@@ -110,17 +110,21 @@ public class Queries {
     }
  
     public void createUser(Users user) throws SQLException{
-        String sql = "Insert into User(user_login_name,user_login_password) values (?,?)";
-        p = con.connection.prepareStatement(sql);
-        p.setString(1, user.getUserName());
-        p.setString(2, user.getUserPassWord());
+        //con.setConnection();
+        String sql = "Insert into User(user_login_name,user_login_password) values" + "(?,?)";
+        PreparedStatement p2 = con.connection.prepareStatement(sql);
+        
+        p2.setString(1, user.getUserName());
+        p2.setString(2, user.getUserPassWord());
         String username = user.getUserName();
-        createCollection(username);
+       createCollection(username);
+       //System.out.println(sql);
         
         try{
-           int columns =  p.executeUpdate();
+            p2.execute();
+           //p.executeQuery(sql);
         }catch(SQLException e){
-           System.out.println("SQL error" + e.getMessage());
+           System.out.println("SQL error " + e.getMessage());
        }
     
     }
@@ -140,17 +144,18 @@ public class Queries {
      }
      
      public boolean userExists(String username)throws SQLException{
-     String sql = "Select * from User where user_login_name = ?";
+     String sql = "Select user_login_name from User where user_login_name = ?";
      p = con.connection.prepareStatement(sql);
+     p.setString(1,username);
      try{
          rs = p.executeQuery();
          if(!rs.next()){
-             return false;
+             return true;
          }
      }catch(SQLException e){
          System.out.println("Another error: " + e.getMessage());
      }
-        return true;
+        return false;
      }
      public String retrievePassword(String username) throws SQLException{
          String pass = "";

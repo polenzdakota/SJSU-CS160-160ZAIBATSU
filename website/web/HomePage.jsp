@@ -48,7 +48,7 @@
                         </div>
                         <!-- Ebrima Bold is the font for the text on the image -->
                         <form action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
-                            <div class="form-group">
+                            <div class="form-group login-form">
                                 <input type="text" class="form-control" placeholder="Username" name="username">
                                 <input type="text" class="form-control" placeholder="Password" name="password">
                             </div>
@@ -60,7 +60,6 @@
                         <form action="CreateAccount.jsp" class="navbar-form navbar-login navbar-fixed-top create-account-form-nav" role="login" align="right">
                         	<button type="createAccount" class="custom-button btn btn-default label-warning" href="CreateAccount.jsp">Create New Account</button> 
                         </form>
-                        
                     </a>
                 </div>
             </div>
