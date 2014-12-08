@@ -5,11 +5,8 @@
  */
 package Models;
 import java.sql.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 /**
@@ -34,7 +31,7 @@ public class Queries {
         
     }
     
-    public ResultSet collectionJoin(String username)throws SQLException{
+    public ResultSet collectionJoin(String username) throws SQLException{
         String sql = "Select * from Cards Inner Join "+ username  +" on Cards.card_id = " + username +".card_id";
         System.out.println(sql);
         p = con.connection.prepareStatement(sql);
@@ -42,7 +39,7 @@ public class Queries {
         try{
             rs = p.executeQuery();
             
-        }catch(SQLException e){
+        } catch(SQLException e) {
             System.out.println("Error message for this Collection join query is " + e.getMessage());
         }
         return rs;
@@ -250,7 +247,8 @@ public class Queries {
              System.out.println("Error in the update " + e.getMessage());
          }
      }
-     public void insertCollection(int cardId,String username) throws SQLException{
+     
+     public void insertCollection(int cardId, String username) throws SQLException{
          String sql = "Insert into "+username+ "(card_id) values(?)";
          p = con.connection.prepareStatement(sql);
          p.setInt(1,cardId);
@@ -260,6 +258,29 @@ public class Queries {
              System.out.println("This could not insert " + e.getMessage());
          }
      }
+     
+	public void addCards(int cardId, String username, int delta) {
+		try {
+			String sql = "SELECT * FROM " + username + " WHERE card_id = " + cardId + ";";
+			p = con.connection.prepareStatement(sql);
+			rs = p.executeQuery();
+			if (rs.next()) {
+				int quantity = rs.getInt("quantity");
+				if (quantity + delta > 0) {
+					sql = "UPDATE " + username + " SET quantity = " + (quantity + delta) + "WHERE card_id = " + cardId + ";";
+				} else {
+					sql = "DELETE FROM " + username + " WHERE card_id = " + cardId + ";";
+				}
+				p = con.connection.prepareStatement(sql);
+				p.executeUpdate();
+			} else if (delta > 0) {
+				sql = "INSERT INTO " + username + " (card_id,quantity) VALUES (" + cardId + "," + delta + ");";
+				p = con.connection.prepareStatement(sql);
+				p.executeUpdate();
+			}
+		} catch(SQLException e) {
+		}
+	}
      
        
    public ArrayList<Card> setCards(ResultSet rs) throws SQLException{
@@ -308,6 +329,38 @@ public class Queries {
       }
 
    }
+   
+   	
+	public CardSet getUserCollection(String username) {
+		try {
+			rs = collectionJoin(username);
+			HashMap<Card,Integer> cards = new HashMap<Card,Integer>();
+			if (rs == null) return new CardSet(cards);
+			while(rs.next()) {
+				int id = (rs.getInt("card_id"));
+				String name = (rs.getString("card_name"));
+				String card_cost = (rs.getString("card_cost"));
+				int card_cmc = (rs.getInt("card_cmc"));
+				int colors = (rs.getInt("card_colors"));
+				String card_supertypes = (rs.getString("card_supertypes"));
+				String card_subtypes = (rs.getString("card_subtypes"));
+				String card_cardtypes = (rs.getString("card_cardtypes"));
+				String card_text = (rs.getString("card_text"));
+				String card_toughness= (rs.getString("card_toughness"));
+				String card_power= (rs.getString("card_power"));
+				String card_loyalty =(rs.getString("card_loyalty"));
+				String image = (rs.getString("card_image_location"));
+				Card c = new Card(name,id,colors,card_cost,card_cmc,card_supertypes,card_cardtypes,card_subtypes,card_text,card_power,card_toughness,card_loyalty,image);
+				
+				
+				cards.put(c, rs.getInt("quantity"));
+			}
+			return new CardSet(cards);
+		} catch (SQLException e) {
+			return null;
+		}
+		
+	}
   
 }
 

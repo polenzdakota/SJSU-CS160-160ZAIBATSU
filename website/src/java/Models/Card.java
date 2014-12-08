@@ -111,4 +111,8 @@ public class Card implements Serializable {
     public String getCardImageLocation() {
         return card_image_location;
     }
+    
+    public boolean equals(Card other) {
+			return id == other.id;
+		}
 }

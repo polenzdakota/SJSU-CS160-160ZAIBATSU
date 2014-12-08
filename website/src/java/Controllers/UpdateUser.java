@@ -4,8 +4,7 @@
  */
 package Controllers;
 
-import Models.Queries;
-import Models.Users;
+import Models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -43,8 +42,14 @@ public class UpdateUser extends HttpServlet {
         String user = (String) session.getAttribute("currentUser");
         String action = (String) request.getParameter("action");
         String cardId = (String) request.getParameter("id");
+        String quantity = (String) request.getParameter("quantity");
         int id = Integer.parseInt(cardId);
-        dbAccessor.closeData();
+        int quant = Integer.parseInt(quantity);
+        if (action.equals("add-card")) {
+					addCardToCollection(id, quant);
+					response.sendRedirect("ViewCollection.jsp");
+				}
+        //dbAccessor.closeData();
     }
 
     /**
@@ -54,8 +59,10 @@ public class UpdateUser extends HttpServlet {
      * @return true if the card is added
      * @throws SQLException
      */
-    protected boolean addCardToCollection(int cardId) throws SQLException {
-        dbAccessor.insertCollection(cardId, (String) session.getAttribute("user"));
+    protected boolean addCardToCollection(int cardId, int quantity) throws SQLException {
+        dbAccessor.addCards(cardId, (String) session.getAttribute("user"), quantity);
+        CardSet cardSet = dbAccessor.getUserCollection((String) session.getAttribute("user"));
+        session.setAttribute("userCards", cardSet);
         return true;
     }
 
