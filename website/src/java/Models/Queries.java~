@@ -33,6 +33,24 @@ public class Queries {
         con.setConnection();
         
     }
+		
+		 public int quantityCollection(String username) throws SQLException {
+        String sql = "Select sum(quantity)as SUM from "+ username;
+        //select sum(quantity) as SUM from ryan333;
+        p = con.connection.prepareStatement(sql);
+        //p.setString(1, username);
+        System.out.println(sql);
+        int count = 0;
+        try{
+            rs = p.executeQuery();
+            while(rs.next()){
+                count = rs.getInt("SUM");
+            }
+        }catch(SQLException e){
+            System.out.println("Error in summing up quantity " + e.getMessage());
+        }
+        return count;
+    }
     
     public ResultSet collectionJoin(String username)throws SQLException{
         String sql = "Select * from Cards Inner Join "+ username  +" on Cards.card_id = " + username +".card_id";
