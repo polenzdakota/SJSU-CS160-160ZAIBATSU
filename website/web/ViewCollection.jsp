@@ -1,3 +1,5 @@
+<%@page import="Models.Card"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -84,9 +86,8 @@
                 <ul class="list-group">
 
                     <%
-                        Object tmp = request.getAttribute("set");
+                    ArrayList<Card> set = (ArrayList<Card>)session.getAttribute("userCards");
                         String toPage = request.getContextPath() + "/Linker";
-                        ArrayList<Card> set = (ArrayList<Card>) tmp;
 
                         for (int i = 0; i < set.size(); i++) {
                             int id = set.get(i).getId();

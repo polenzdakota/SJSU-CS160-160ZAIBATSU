@@ -40,6 +40,10 @@
         <servlet-name>CreateUser</servlet-name>
         <servlet-class>Controllers.CreateUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewCollectionLinker</servlet-name>
+        <servlet-class>Controllers.ViewCollectionLinker</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserVerify</servlet-name>
         <url-pattern>/UserVerify</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>CreateUser</servlet-name>
         <url-pattern>/CreateUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCollectionLinker</servlet-name>
+        <url-pattern>/ViewCollectionLinker</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
