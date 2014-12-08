@@ -52,11 +52,18 @@
 	margin-right:auto;
 	border-width: 7px;
 	border-color: #000000;
+	border-bottom-color: white;
 	width:50%;
 	height:2%;
 	margin-top:7%;
+	background-color: 4A4A4A;
 	
 }	
+
+.active-tab {
+	background-color: white;
+}
+
 
 .username-text {
 	float: right;

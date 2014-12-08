@@ -105,10 +105,16 @@
             </div>
             <!-- TODO --->
             <!-- make this only show up if they are logged in -->
-            <div class="input-group add-to-coll add-to-collection-form">
-                <input type="text" class="form-control" placeholder="Quantity">
-                <button type="add_to_collection" class="custom-button btn btn-default label-success same-line">Add to Collection</button>
-            </div>
+            
+
+			<form action="${pageContext.request.contextPath}/LogOut" class="add-quntity-form" role="addQuantityToCollection" align="right">						
+				<div method="post" class="input-group add-to-coll add-to-collection-form">
+					<input type="text" class="form-control" placeholder="Quantity">
+					<button type="add_to_collection" class="custom-button btn btn-default label-success same-line">Add to Collection</button>
+				</div>
+			</form>
+            
+
         </div>
 
 

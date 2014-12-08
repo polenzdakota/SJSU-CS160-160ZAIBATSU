@@ -33,24 +33,6 @@ public class Queries {
         con.setConnection();
         
     }
-		
-		 public int quantityCollection(String username) throws SQLException {
-        String sql = "Select sum(quantity)as SUM from "+ username;
-        //select sum(quantity) as SUM from ryan333;
-        p = con.connection.prepareStatement(sql);
-        //p.setString(1, username);
-        System.out.println(sql);
-        int count = 0;
-        try{
-            rs = p.executeQuery();
-            while(rs.next()){
-                count = rs.getInt("SUM");
-            }
-        }catch(SQLException e){
-            System.out.println("Error in summing up quantity " + e.getMessage());
-        }
-        return count;
-    }
     
     public ResultSet collectionJoin(String username)throws SQLException{
         String sql = "Select * from Cards Inner Join "+ username  +" on Cards.card_id = " + username +".card_id";
@@ -147,23 +129,20 @@ public class Queries {
     
     }
     
-     public String hashPassword(String base) throws NoSuchAlgorithmException{
-    try{
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] hash = digest.digest(base.getBytes("UTF-8"));
-        StringBuffer hexString = new StringBuffer();
-           
-        for (int i = 0; i < hash.length; i++) {
-            String hex = Integer.toHexString(0xff & hash[i]);
-            if(hex.length() == 1) hexString.append('0');
-            hexString.append(hex);
-        }
-
-        return hexString.toString();
-    } catch(Exception ex){
-       throw new RuntimeException(ex);
-    }
-}
+     public String hashPassword(String password) throws NoSuchAlgorithmException{
+         this.password = password + "hoardr";
+         MessageDigest hashpass = null; 
+         try{
+         hashpass = MessageDigest.getInstance("SHA-256");
+         }catch(NoSuchAlgorithmException e){
+             System.out.println("This algorithm doesn't exist " + e.getMessage());
+         }
+         hashpass.update(password.getBytes());
+         String encryption = new String(hashpass.digest());
+         
+         return encryption;
+     }
+     
      public boolean userExists(String username)throws SQLException{
      String sql = "Select user_login_name from User where user_login_name = ?";
      p = con.connection.prepareStatement(sql);
@@ -329,9 +308,6 @@ public class Queries {
       }
 
    }
-	public void closeConnection() throws SQLException{
-       con.closeConnection();
-   }  
   
 }
 

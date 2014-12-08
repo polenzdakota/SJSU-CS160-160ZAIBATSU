@@ -50,38 +50,39 @@
             </div>
         </nav>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top secondary-navbar" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <ul class="nav nav-tabs nav-justified">
-                        <li><a href="UserPage.jsp">Search</a></li>
-                        <li><a href="ViewCollection.jsp">Collection</a></li>
-                        <li><a href="AccountInfo.jsp">Account</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- END Navbar -->
+		
+		<nav class="navbar navbar-inverse navbar-fixed-top secondary-navbar" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<ul class="nav nav-tabs nav-justified">
+						<li><a href="UserPage.jsp">Search</a></li>
+						<li><a class="active-tab" href="ViewCollection.jsp">Collection</a></li>
+						<li><a href="AccountInfo.jsp">Account</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END Navbar -->
+		
+		
+		<!-- Start view collection page -->
+		<div class="view-collection-page">
 
-
-        <!-- Start view collection page -->
-        <div class="view-collection-page">
-
-            <div class="panel panel-default view-collection-panel">
-                <!-- Statistics -->
-                <div class="panel-heading">
-                    <h3 class="panel-title">Collection Statistics</h3>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-group">
-                        <li class="list-group-item"> <b>Number of Cards:</b> ${numberOfCards}</li>
-                        <li class="list-group-item"> <b>Average Cost:</b> ${averageCost}</li>
-                        <li class="list-group-item"> <b>Colors:</b> ${color}</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="results">
+			<div class="panel panel-default view-collection-panel">
+				<!-- Statistics -->
+  				<div class="panel-heading">
+   					<h3 class="panel-title">Collection Statistics</h3>
+  				</div>
+  				<div class="panel-body">
+    				<ul class="list-group">
+						<li class="list-group-item"> <b>Number of Cards:</b> ${numberOfCards}</li>
+    					<li class="list-group-item"> <b>Average Cost:</b> ${averageCost}</li>
+    					<li class="list-group-item"> <b>Colors:</b> ${color}</li>
+					</ul>
+  				</div>
+			</div>
+			
+			<div class="results">
                 <ul class="list-group">
 
                     <%
@@ -109,22 +110,12 @@
                     %>
                 </ul>
             </div>
+			
+		</div>
+		<!-- End view collection page -->
+		
 
-        </div>
-        <!-- End view collection page -->
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Bootstrap core JavaScript
+        <!-- Bootstrasp core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
