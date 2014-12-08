@@ -44,7 +44,7 @@ public class UserVerify extends HttpServlet {
         if (checkUser(user) || !checkPass(user, pass)) {
             session.setAttribute("invalidFields", "Incorrect Username or Password");
             String url = request.getContextPath() + "/HomePage.jsp";
-            dbAccessor.closeData();
+            //dbAccessor.closeData();
             response.sendRedirect(url);
         } else {
             ResultSet set = dbAccessor.collectionJoin(user);
@@ -52,7 +52,7 @@ public class UserVerify extends HttpServlet {
             session.setAttribute("currentUser", user);
             session.setAttribute("userCards", cardSet);
             String url = request.getContextPath() + "/UserPage.jsp";
-            dbAccessor.closeData();
+            //dbAccessor.closeData();
             response.sendRedirect(url);
         }
     }
