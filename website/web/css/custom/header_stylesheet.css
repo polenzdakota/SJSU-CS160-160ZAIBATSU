@@ -14,7 +14,7 @@
 
 .navbar-login {
 	padding: 30px;
-	padding-right: 15%;
+	padding-right: 20%;
 	
 }
 
@@ -45,7 +45,6 @@
 
 
 .username-text {
-	background-color: red;
 	float: right;
 }
 
