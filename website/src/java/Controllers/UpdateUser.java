@@ -4,11 +4,14 @@
  */
 package Controllers;
 
+import Models.Card;
 import Models.Queries;
 import Models.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -44,7 +47,16 @@ public class UpdateUser extends HttpServlet {
         String action = (String) request.getParameter("action");
         String cardId = (String) request.getParameter("id");
         int id = Integer.parseInt(cardId);
-        dbAccessor.closeData();
+        if (action.equals("add")) {
+            addCardToCollection(id);
+        } else if (action.equals("subtract")) {
+            deleteCardFromCollection(id);
+        }
+        ResultSet rs = dbAccessor.collectionJoin(user);
+        ArrayList<Card> set = dbAccessor.setCards(rs);
+        session.setAttribute("userCards", set);
+        String url = request.getContextPath() + "/UserPage.jsp";
+        response.sendRedirect(url);
     }
 
     /**
@@ -65,8 +77,10 @@ public class UpdateUser extends HttpServlet {
      * @param name the name of the card
      * @return true if the card was deleted
      */
-    protected boolean deleteCardFromCollection(String name) {
-        return false;
+    protected boolean deleteCardFromCollection(int cardId) throws SQLException {
+        String table = (String) session.getAttribute("currentUser");
+        dbAccessor.decrementCard(cardId, 1, table);
+        return true;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
