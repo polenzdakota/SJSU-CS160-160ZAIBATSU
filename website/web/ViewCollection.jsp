@@ -55,7 +55,7 @@
 				<div class="navbar-header">
 					<ul class="nav nav-tabs nav-justified">
 						<li><a href="UserPage.jsp">Search</a></li>
-						<li><a href="ViewCollection.jsp">Collection</a></li>
+						<li><a class="active-tab" href="ViewCollection.jsp">Collection</a></li>
 						<li><a href="AccountInfo.jsp">Account</a></li>
 					</ul>
 				</div>
@@ -110,12 +110,7 @@
 		<!-- End view collection page -->
 		
 		
-		
-		
-		
-		
-		
-		
+	
 		
 		
 		

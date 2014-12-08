@@ -96,6 +96,7 @@ body {
 	padding-left: 5%;
 	padding-bottom: 5%;
 	border: thick solid black;
+	border-top-color: white;
 	border-width: 8px 8px 8px 8px;
 }
 
@@ -126,5 +127,6 @@ body {
 	border: thick solid black;
 	border-width: 8px 8px 8px 8px;
 }
+
 
 
