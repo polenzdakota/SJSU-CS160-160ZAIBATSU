@@ -32,7 +32,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="HomePage.jsp">
+                    <a class="navbar-brand">
                         <div class="hoardr_icon">
                             <img alt="Brand" src="Images/Hoardr_Icon.png">
                         </div>
@@ -56,6 +56,19 @@
                 </div>
             </div>
         </nav>
+        <%if (session.getAttribute("currentUser") != null) {%>              
+        <nav class="navbar navbar-inverse navbar-fixed-top secondary-navbar" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <ul class="nav nav-tabs nav-justified">
+                        <li><a href="UserPage.jsp">Search</a></li>
+                        <li><a href="ViewCollection.jsp">Collection</a></li>
+                        <li><a href="HomePage.jsp">Decks</a></li>
+                        <li><a href="HomePage.jsp">Account</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav> <%}%>
 
         <div class="single-card-page">
             <div class="row">
