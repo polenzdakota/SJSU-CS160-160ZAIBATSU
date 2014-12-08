@@ -52,12 +52,10 @@ public class CreateUser extends HttpServlet {
             session.setAttribute("currentUser", user);
             session.setAttribute("userCards", cardSet);
             String url = request.getContextPath() + "/UserPage.jsp";
-            //dbAccessor.closeData();
             response.sendRedirect(url);
         } else {
             session.setAttribute("invalidFields", "User Already Exists");
             String url = request.getContextPath() + "/HomePage.jsp";
-            //dbAccessor.closeData();
             response.sendRedirect(url);
         }
 

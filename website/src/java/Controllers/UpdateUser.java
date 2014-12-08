@@ -56,6 +56,7 @@ public class UpdateUser extends HttpServlet {
         ArrayList<Card> set = dbAccessor.setCards(rs);
         session.setAttribute("userCards", set);
         String url = request.getContextPath() + "/UserPage.jsp";
+        dbAccessor.closeConnection();
         response.sendRedirect(url);
     }
 
