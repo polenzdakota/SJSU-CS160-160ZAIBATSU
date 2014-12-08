@@ -69,7 +69,7 @@
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<ul class="nav nav-tabs nav-justified ">
-						<li><a class="active-tab" href="HomePage.jsp">Search</a></li>
+						<li><a class="active-tab" href="UserPage.jsp">Search</a></li>
 						<li><a href="ViewCollection.jsp">Collection</a></li>
 						<li><a href="AccountInfo.jsp">Account</a></li>
 					</ul>
