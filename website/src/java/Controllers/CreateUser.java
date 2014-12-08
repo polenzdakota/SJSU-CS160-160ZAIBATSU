@@ -49,16 +49,16 @@ public class CreateUser extends HttpServlet {
         boolean canCreate = checkAndCreate(user, pass);
         if (canCreate) {
             ResultSet set = dbAccessor.collectionJoin(user);
-            //ArrayList<Card> cardSet = dbAccessor.setCards(set);
+            ArrayList<Card> cardSet = dbAccessor.setCards(set);
             session.setAttribute("currentUser", user);
-            //session.setAttribute("userCards", cardSet);
+            session.setAttribute("userCards", cardSet);
             String url = request.getContextPath() + "/UserPage.jsp";
-            //dbAccessor.closeData();
+            dbAccessor.closeData();
             response.sendRedirect(url);
         } else {
             session.setAttribute("invalidFields", "User Already Exists");
             String url = request.getContextPath() + "/HomePage.jsp";
-            //dbAccessor.closeData();
+            dbAccessor.closeData();
             response.sendRedirect(url);
         }
 
