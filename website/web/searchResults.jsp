@@ -37,6 +37,7 @@
                             <img alt="Brand" src="Images/Hoardr_Icon.png">
                         </div>
                         <!-- Ebrima Bold is the font for the text on the image -->
+                        <%if (session.getAttribute("currentUser") == null) {%> 
                         <form action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Username" name="user_name">
@@ -44,22 +45,30 @@
                             </div>
                             <button type="login" class="custom-button btn btn-default label-success">Login</button>
                         </form>
+                        <%} else {%>
+                        <form action="${pageContext.request.contextPath}/LogOut" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
+                            <p class= "username-text">Logged in as: ${currentUser}</p>
+                            <form action="${pageContext.request.contextPath}/LogOut" class="logout-button">	
+                                <button type="logout" class="custom-button btn btn-default label-success">Logout</button>
+                            </form>
+                        </form>
+                                <%}%>
                     </a>
                 </div>
             </div>
         </nav>
-                        <%if(session.getAttribute("currentUser") != null) {%>              
+        <%if (session.getAttribute("currentUser") != null) {%>              
         <nav class="navbar navbar-inverse navbar-fixed-top secondary-navbar" role="navigation">
-                <div class="container-fluid">
-                        <div class="navbar-header">
-                                <ul class="nav nav-tabs nav-justified">
-                                        <li><a href="UserPage.jsp">Search</a></li>
-                                        <li><a href="ViewCollection.jsp">Collection</a></li>
-                                        <li><a href="HomePage.jsp">Decks</a></li>
-                                        <li><a href="HomePage.jsp">Account</a></li>
-                                </ul>
-                        </div>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <ul class="nav nav-tabs nav-justified">
+                        <li><a href="UserPage.jsp">Search</a></li>
+                        <li><a href="ViewCollection.jsp">Collection</a></li>
+                        <li><a href="HomePage.jsp">Decks</a></li>
+                        <li><a href="HomePage.jsp">Account</a></li>
+                    </ul>
                 </div>
+            </div>
         </nav> <%}%>
 
 
