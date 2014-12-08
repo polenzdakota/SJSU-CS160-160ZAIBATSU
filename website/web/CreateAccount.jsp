@@ -56,8 +56,6 @@
   					<p><a class="create-account-form-text">Verified Password:</a><input type="text" class="form-control" placeholder="Verify Password" name="newVerifiedPassword"></p>
                              </form>	
 			</div>
-			<button type="createAccount" class="custom-button btn btn-default label-success " name="createAccount">Create Account!</button>
-
 		</div>
     
     

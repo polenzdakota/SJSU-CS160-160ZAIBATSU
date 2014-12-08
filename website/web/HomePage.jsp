@@ -55,7 +55,6 @@
                             <button type="login" class="custom-button btn btn-default label-success">Login</button>
                             <button type="createAccount" class="custom-button btn btn-default label-warning" href="CreateAccount.jsp">Create New Account</button> 
                         </form>
-                        
                     </a>
                 </div>
             </div>
