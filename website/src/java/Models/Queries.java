@@ -27,12 +27,15 @@ public class Queries {
     PreparedStatement p;
     Statement statement;
     Connector con;
+    String password;
     public Queries(){
-        this.con = new Connector();
+        this.con = new Connector(); 
         con.setConnection();
+        
     }
+    
     public ResultSet collectionJoin(String username)throws SQLException{
-        String sql = "Select * from Cards Inner Join ? on Cards.card_id = ?.card_collection_id";
+        String sql = "Select * from Cards Inner Join ? on Cards.card_id = ?.card_id";
         p = con.connection.prepareStatement(sql);
         p.setString(1, username);
         p.setString(2, username);
@@ -44,11 +47,48 @@ public class Queries {
         }
         return rs;
     }
+    public void deleteUserDeck(String tablename, String deckname)throws SQLException{
+        String sql = "DELETE FROM ? WHERE DECKNAME = ?";
+        p = con.connection.prepareCall(sql);
+        p.setString(1,tablename);
+        p.setString(2,deckname);
+        try{
+            p.executeQuery();
+        }catch(SQLException e){
+            System.out.println("deleteUserDeck doesn't work" + e.getMessage());
+            
+        }
+        
+    }
+    public void dropDeck(String tablename) throws SQLException{
+        String sql = "DROP TABLE ?";
+        p = con.connection.prepareCall(sql);
+        p.setString(1,tablename);
+        try{
+            p.executeQuery();
+        }catch(SQLException e){
+            System.out.println("Drop deck didn't work");
+        }
+        
+    }
+    public void insertUserDecks(int userId, String deckname)throws SQLException{
+        String sql = "Insert into UserDecks(USER_ID,DECKNAME) values(?,?)";
+        p = con.connection.prepareCall(sql);
+        p.setInt(1,userId);
+        p.setString(2,deckname);
+        try{
+            p.executeQuery();
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        
+    }
     public void createCollection(String name)throws SQLException{
-        String sql = "CREATE TABLE ? (Entry int , card_collection int, PRIMARY KEY(Entry),"
-        + "FOREIGN KEY (card_collection) REFERENCES Cards(card_id))";
+        String sql = "CREATE TABLE ? (card_id int, quantity int, PRIMARY KEY(card_id),FOREIGN KEY (card_id) REFERENCES Cards(card_id))";
         p = con.connection.prepareCall(sql);
         p.setString(1, name);
+       
         try{
             p.executeQuery();
         }catch(SQLException e){
@@ -57,11 +97,25 @@ public class Queries {
         
     }
     
+    public void createDeck(String deckname) throws SQLException{
+        String sql = "CREATE TABLE ? (card_id int, quantity int, PRIMARY KEY(card_id) Foreign Key (card_id) REFERENCES Cards(card_id)";
+        p = con.connection.prepareCall(sql);
+        p.setString(1,deckname);
+        
+        try{
+            p.executeQuery();
+        }catch(SQLException e){
+            System.out.println("" + e.getMessage());
+        }
+    }
+ 
     public void createUser(Users user) throws SQLException{
         String sql = "Insert into User(user_login_name,user_login_password) values (?,?)";
         p = con.connection.prepareStatement(sql);
         p.setString(1, user.getUserName());
         p.setString(2, user.getUserPassWord());
+        String username = user.getUserName();
+        createCollection(username);
         
         try{
            int columns =  p.executeUpdate();
@@ -72,7 +126,8 @@ public class Queries {
     }
     
      public String hashPassword(String password) throws NoSuchAlgorithmException{
-         MessageDigest hashpass = null;
+         this.password = password + "hoardr";
+         MessageDigest hashpass = null; 
          try{
          hashpass = MessageDigest.getInstance("SHA-256");
          }catch(NoSuchAlgorithmException e){
@@ -100,7 +155,6 @@ public class Queries {
      public String retrievePassword(String username) throws SQLException{
          String pass = "";
          String sql = "Select user_login_password from User where user_login_name = ?";
-         con.setConnection();
          p = con.connection.prepareStatement(sql);
          p.setString(1,username);
          try{
@@ -120,6 +174,7 @@ public class Queries {
        * @throws SQLException 
        */
      public ResultSet searchREGEXP(String s) throws SQLException{
+         con.setConnection();
        try{
            String sql = "SELECT * from Cards where card_name REGEXP ? order by card_name;";
            p = con.connection.prepareStatement(sql);
@@ -132,12 +187,11 @@ public class Queries {
        }catch(SQLException e){
            System.out.println("SQL error" + e.getMessage());
        }
-       
+      
        return rs;
      }
      public ResultSet oneCard(String s) throws SQLException{
- 
-      
+   
        try{
            String sql = "SELECT * from Cards where card_id = ?";
            p = con.connection.prepareStatement(sql);
@@ -152,8 +206,49 @@ public class Queries {
       
        return rs;
      }
-     public void insert(int cardId,String username) throws SQLException{
+     public void decrementCard(int cardId,int quantity, String tablename)throws SQLException{
+         String sql = "Select quantity from ? where card_id = ?";
+         p = con.connection.prepareStatement(sql);
+         p.setString(1,tablename);
+         p.setInt(2, cardId);
+         try{
+             rs = p.executeQuery();
+             
+             while(rs.next()){
+                 if(rs.getInt("quantity")>0){
+                     String sql2 = "Update ? set quantity = ? where card_id =?";
+                     p =con.connection.prepareStatement(sql2);
+                     p.setString(1,tablename);
+                     p.setInt(2,quantity);
+                     p.setInt(3,cardId);
+                     p.executeQuery();
+                 }
+                 else{
+                     String sql3 = "Delete from ? where card_id =?";
+                     p = con.connection.prepareStatement(sql3);
+                     p.setString(1,tablename);
+                     p.setInt(2,cardId);
+                     p.executeQuery();
+                 }
+             }
+         }catch(SQLException e){
+             System.out.println("Error in the sql code" + e.getMessage());
+         }
+     }
+     public void updateQuantityCollection(int cardId, String username,int quantity) throws SQLException{
+         String sql = "UPDATE ? SET quantity = ? where card_collection_id = ?";
+         p = con.connection.prepareStatement(sql);
+         p.setString(1,username);
+         p.setInt(2,quantity);
+         p.setInt(3, cardId);
          
+         try{
+             int column = p.executeUpdate();
+         }catch(SQLException e){
+             System.out.println("Error in the update " + e.getMessage());
+         }
+     }
+     public void insertCollection(int cardId,String username) throws SQLException{
          String sql = "Insert into ? (card_collection_id) values(?)";
          p = con.connection.prepareStatement(sql);
          p.setString(1, username);
@@ -198,6 +293,8 @@ public class Queries {
    public void closeData() throws SQLException{
       try{
           rs.close();
+          con.closeConnection();
+          
           System.out.println("CLose resultset");
       }catch(SQLException e){
           System.out.println("SQL error " + e.getMessage());
@@ -212,4 +309,3 @@ public class Queries {
    }
   
 }
-
