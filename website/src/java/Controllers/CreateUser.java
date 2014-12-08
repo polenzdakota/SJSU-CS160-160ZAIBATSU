@@ -42,7 +42,6 @@ public class CreateUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
-        Queries dbAccessor = new Queries();
         HttpSession session = request.getSession();
         String user = (String) request.getParameter("user");
         String pass = (String) request.getParameter("pass");
