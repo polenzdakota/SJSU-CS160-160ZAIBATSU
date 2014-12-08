@@ -1,5 +1,5 @@
-<%@page import="Models.Card"%>
-<%@page import="java.util.ArrayList"%>
+<!-- <%@page import="Models.Card"%>
+<%@page import="java.util.ArrayList"%> -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -85,13 +85,22 @@
 			<div class="results">
                 <ul class="list-group">
 
-                    <%
+                   <%
                     ArrayList<Card> set = (ArrayList<Card>)session.getAttribute("userCards");
                         String toPage = request.getContextPath() + "/Linker";
 
                         for (int i = 0; i < set.size(); i++) {
                             int id = set.get(i).getId();
                             out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success\">" + set.get(i).getName() + "</li></a>");
+                        %>
+
+        					<form method="post" action="${pageContext.request.contextPath}/LogOut" class="subtract-button">	
+            					<button type="subtract" class="custom-button btn btn-default label-danger">-</button>
+        					</form>
+                        	 <form method="post" action="${pageContext.request.contextPath}/LogOut" class="add-button">	
+            					<button type="add" class="custom-button btn btn-default label-success">+</button>
+        					</form>
+                      <%
                         }
                     %>
                 </ul>
