@@ -42,7 +42,7 @@ public class UserVerify extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (!checkUser(user) || !checkPass(user, pass)) {
-            session.setAttribute("invalidFields", true);
+            session.setAttribute("invalidFields", "Incorrect Username or Password");
             String url = request.getContextPath() + "/HomePage.jsp";
             dbAccessor.closeData();
             response.sendRedirect(url);

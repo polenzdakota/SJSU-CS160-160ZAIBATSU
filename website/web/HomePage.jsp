@@ -36,12 +36,12 @@
                         </div>
                         <div class="navbar-header navbar-fixed-top">
 							<%
-                                Boolean tmp = (Boolean) session.getAttribute("invalidFields");
-                                boolean invalid = (tmp != null) ? true : false;
+                                String errName = (String) session.getAttribute("invalidFields");
+                                boolean invalid = (errName != null) ? true : false;
                                 //This is super ghetto. Going to look up better
                                 //methods for doing this.
                                 if (invalid) {
-                                    out.print("<p>" + "User or password is incorrect!" + "</p>");
+                                    out.print("<p>" + errName + "</p>");
                                     session.invalidate();
                                 }
                             %>
