@@ -5,6 +5,7 @@
 package Controllers;
 
 import Models.Queries;
+import Models.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -39,8 +40,10 @@ public class UpdateUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         session = request.getSession();
-        String action = (String) request.getAttribute("action");
-
+        String user = (String) session.getAttribute("currentUser");
+        String action = (String) request.getParameter("action");
+        String cardId = (String) request.getParameter("id");
+        int id = Integer.parseInt(cardId);
         dbAccessor.closeData();
     }
 

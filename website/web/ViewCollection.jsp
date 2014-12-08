@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Homepage - Not logged in">
@@ -28,7 +28,7 @@
         <title>User Home Page</title>
     </head>
     <body>	
-		<!-- Start Navbar -->
+        <!-- Start Navbar -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -37,18 +37,19 @@
                             <img alt="Brand" src="Images/Hoardr_Icon.png">
                         </div>
                         <div class="navbar-header navbar-fixed-top">
-                        
-                        <form method="post" action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
-                            <p class= "username-text">Logged in as: ${currentUser}</p>
-       						 <form method="post" action="${pageContext.request.contextPath}/LogOut" class="logout-button">	
-            					<button type="logout" class="custom-button btn btn-default label-success">Logout</button>
-        					</form>
-                        </form> 	
+
+                            <form method="post" action="${pageContext.request.contextPath}/LogOut" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
+                                <p class= "username-text">Logged in as: ${currentUser}</p>
+                                <form method="post" action="${pageContext.request.contextPath}/LogOut" class="logout-button">	
+                                    <button type="logout" class="custom-button btn btn-default label-success">Logout</button>
+                                </form>
+                            </form> 	
                         </div>
                     </a>
                 </div>
             </div>
         </nav>
+
 		
 		<nav class="navbar navbar-inverse navbar-fixed-top secondary-navbar" role="navigation">
 			<div class="container-fluid">
@@ -84,23 +85,27 @@
 			<div class="results">
                 <ul class="list-group">
 
-                   <%
-                    ArrayList<Card> set = (ArrayList<Card>)session.getAttribute("userCards");
+                    <%
+                        ArrayList<Card> set = (ArrayList<Card>) session.getAttribute("userCards");
                         String toPage = request.getContextPath() + "/Linker";
 
                         for (int i = 0; i < set.size(); i++) {
                             int id = set.get(i).getId();
-                            out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success user-colection-list\">" + set.get(i).getName()); 
-                        %>
-
-        					<form method="post" action="${pageContext.request.contextPath}/LogOut" class="subtract-button">	
-            					<button type="subtract" class="custom-button btn btn-default label-danger">-</button>
-        					</form>
-                        	 <form method="post" action="${pageContext.request.contextPath}/LogOut" class="add-button">	
-            					<button type="add" class="custom-button btn btn-default label-success">+</button>
-        					</form>
-                                                </li></a>
-                      <% 
+                            out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success user-colection-list\">" + set.get(i).getName());
+                    %>
+                    <span class="badge">42 </span>
+                    <form method="post" action="${pageContext.request.contextPath}/UpdateUser" class="subtract-button">
+                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="id" value=<%=id%>>
+                        <button type="subtract" class="custom-button btn btn-default label-danger">+</button>
+                    </form>
+                    <form method="post" action="${pageContext.request.contextPath}/UpdateUser" class="add-button">	
+                        <input type="hidden" name="action" value="subtract">
+                        <input type="hidden" name="id" value=<%=id%>>
+                        <button type="add" class="custom-button btn btn-default label-success">-</button>
+                    </form>
+                    </li></a>
+                    <%
                         }
                     %>
                 </ul>
@@ -109,12 +114,7 @@
 		</div>
 		<!-- End view collection page -->
 		
-		
-	
-		
-		
-		
-		
+
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
