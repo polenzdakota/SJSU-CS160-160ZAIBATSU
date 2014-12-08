@@ -98,12 +98,14 @@
 											System.out.print(cards.getQuantity(set.get(i)));
                     %></span>
                     <form method="post" action="${pageContext.request.contextPath}/UpdateUser" class="subtract-button">
-                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="action" value="add-card">
                         <input type="hidden" name="id" value=<%=id%>>
+                        <input type="hidden" name="quantity" value="1">
                         <button type="subtract" class="custom-button btn btn-default label-danger">+</button>
                     </form>
                     <form method="post" action="${pageContext.request.contextPath}/UpdateUser" class="add-button">	
-                        <input type="hidden" name="action" value="subtract">
+                        <input type="hidden" name="action" value="add-card">
+                        <input type="hidden" name="quantity" value="-1">
                         <input type="hidden" name="id" value=<%=id%>>
                         <button type="add" class="custom-button btn btn-default label-success">-</button>
                     </form>
