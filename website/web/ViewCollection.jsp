@@ -38,7 +38,7 @@
                         </div>
                         <div class="navbar-header navbar-fixed-top">
                         
-                        <form method="post" action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
+                        <form method="post" action="${pageContext.request.contextPath}/LogOut" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
                             <p class= "username-text">Logged in as: ${currentUser}</p>
        						 <form method="post" action="${pageContext.request.contextPath}/LogOut" class="logout-button">	
             					<button type="logout" class="custom-button btn btn-default label-success">Logout</button>
@@ -92,7 +92,7 @@
                             int id = set.get(i).getId();
                             out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success user-colection-list\">" + set.get(i).getName()); 
                         %>
-
+                                                <span class="badge">42 </span>
         					<form method="post" action="${pageContext.request.contextPath}/LogOut" class="subtract-button">	
             					<button type="subtract" class="custom-button btn btn-default label-danger">-</button>
         					</form>

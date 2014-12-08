@@ -75,7 +75,7 @@
                 <div class="hello-world">
                     <div class="single-card-image">
                         <a href="#" class="cardpicture">
-                            <img src="${imagePath}" width="400px" height="581px">
+                            <img src="/img${imagePath}" width="400px" height="581px">
                         </a>
                     </div>
                     <div class="single-card-text">
