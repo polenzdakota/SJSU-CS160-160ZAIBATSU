@@ -46,12 +46,18 @@ public class UpdateUser extends HttpServlet {
         String cardId = (String) request.getParameter("id");
         String quantity = (String) request.getParameter("quantity");
         int id = Integer.parseInt(cardId);
-        int quant = Integer.parseInt(quantity);
-        if (action.equals("add-card")) {
-					addCardToCollection(id, quant);
-					response.sendRedirect("ViewCollection.jsp");
-				}
-        //dbAccessor.closeData();
+        int intQuant = Integer.parseInt(quantity);
+        if (action.equals("add")) {
+            addCardToCollection(id, intQuant);
+        } else if (action.equals("subtract")) {
+            deleteCardFromCollection(id);
+        }
+        ResultSet rs = dbAccessor.collectionJoin(user);
+        ArrayList<Card> set = dbAccessor.setCards(rs);
+        session.setAttribute("userCards", set);
+        String url = request.getContextPath() + "/UserPage.jsp";
+        dbAccessor.closeConnection();
+        response.sendRedirect(url);
     }
 
     /**
@@ -62,10 +68,15 @@ public class UpdateUser extends HttpServlet {
      * @throws SQLException
      */
     protected boolean addCardToCollection(int cardId, int quantity) throws SQLException {
+<<<<<<< HEAD
         String username = (String)session.getAttribute("currentUser");
         dbAccessor.addCards(cardId, username, quantity);
         CardSet cardSet = dbAccessor.getUserCollection(username);
         session.setAttribute("userCards", cardSet);
+=======
+        int quant = quantity;
+        addCardToCollection(cardId, quant);
+>>>>>>> 97be437770699bc0292304b56cc273401f1816a3
         return true;
     }
 
