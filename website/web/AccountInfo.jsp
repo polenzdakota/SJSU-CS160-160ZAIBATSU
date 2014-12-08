@@ -56,7 +56,7 @@
 					<ul class="nav nav-tabs nav-justified">
 						<li><a href="UserPage.jsp">Search</a></li>
 						<li><a href="ViewCollection.jsp">Collection</a></li>
-						<li><a href="HomePage.jsp">Account</a></li>
+						<li><a class="active-tab" href="AccountInfo.jsp">Account</a></li>
 					</ul>
 				</div>
 			</div>
