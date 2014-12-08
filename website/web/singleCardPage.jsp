@@ -105,17 +105,18 @@
             </div>
             <!-- TODO --->
             <!-- make this only show up if they are logged in -->
-            
 
-			<form action="${pageContext.request.contextPath}/UpdateUser" class="add-quntity-form" role="addQuantityToCollection" align="right">						
-				<div method="post" class="input-group add-to-coll add-to-collection-form">
-					<input type="text" class="form-control" placeholder="Quantity" name="quantity">
-					<input type="hidden" name="id" value="${cardId}">
-					<input type="hidden" name="action" value="add-card">
-					<button type="add_to_collection" class="custom-button btn btn-default label-success same-line">Add to Collection</button>
-				</div>
-			</form>
-            
+            <%if (session.getAttribute("currentUser") != null) {%> 
+            <form action="${pageContext.request.contextPath}/UpdateUser" class="add-quntity-form" role="addQuantityToCollection" align="right">						
+                <div method="post" class="input-group add-to-coll add-to-collection-form">
+                    <input type="text" class="form-control" placeholder="Quantity" name="quantity">
+                    <input type="hidden" name="id" value="${cardId}">
+                    <input type="hidden" name="action" value="add-card">
+                    <button type="add_to_collection" class="custom-button btn btn-default label-success same-line">Add to Collection</button>
+                </div>
+            </form>
+            <%}%>
+
 
         </div>
 
