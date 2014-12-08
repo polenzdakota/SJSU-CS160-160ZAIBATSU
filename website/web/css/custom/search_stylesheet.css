@@ -107,12 +107,11 @@ body {
 	margin-top: -20%;
 }
 
-.add-button {
-	float:right;
-}
 
-.subtract-button {
-	float: right;
+
+.user-colection-list {
+    
+    width: 45%;
 }
 
 

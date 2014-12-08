@@ -91,7 +91,7 @@
 
                         for (int i = 0; i < set.size(); i++) {
                             int id = set.get(i).getId();
-                            out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success\">" + set.get(i).getName() + "</li></a>");
+                            out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success user-colection-list\">" + set.get(i).getName()); 
                         %>
 
         					<form method="post" action="${pageContext.request.contextPath}/LogOut" class="subtract-button">	
@@ -100,7 +100,8 @@
                         	 <form method="post" action="${pageContext.request.contextPath}/LogOut" class="add-button">	
             					<button type="add" class="custom-button btn btn-default label-success">+</button>
         					</form>
-                      <%
+                                                </li></a>
+                      <% 
                         }
                     %>
                 </ul>
