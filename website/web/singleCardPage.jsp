@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="Models.Card"%>
+<%@page import="Models.*"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,9 +107,11 @@
             <!-- make this only show up if they are logged in -->
             
 
-			<form action="${pageContext.request.contextPath}/LogOut" class="add-quntity-form" role="addQuantityToCollection" align="right">						
+			<form action="${pageContext.request.contextPath}/UpdateUser" class="add-quntity-form" role="addQuantityToCollection" align="right">						
 				<div method="post" class="input-group add-to-coll add-to-collection-form">
-					<input type="text" class="form-control" placeholder="Quantity">
+					<input type="text" class="form-control" placeholder="Quantity" name="quantity">
+					<input type="hidden" name="id" value="${cardId}">
+					<input type="hidden" name="action" value="add-card">
 					<button type="add_to_collection" class="custom-button btn btn-default label-success same-line">Add to Collection</button>
 				</div>
 			</form>

@@ -1,5 +1,5 @@
-<!-- <%@page import="Models.Card"%>
-<%@page import="java.util.ArrayList"%> -->
+<!-- <%@page import="Models.*"%>
+<%@page import="java.util.*"%> -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -86,14 +86,17 @@
                 <ul class="list-group">
 
                     <%
-                        ArrayList<Card> set = (ArrayList<Card>) session.getAttribute("userCards");
+												CardSet cards = (CardSet)session.getAttribute("userCards");
+                        List<Card> set = cards.listCards();
                         String toPage = request.getContextPath() + "/Linker";
 
                         for (int i = 0; i < set.size(); i++) {
                             int id = set.get(i).getId();
                             out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success user-colection-list\">" + set.get(i).getName());
                     %>
-                    <span class="badge">42 </span>
+                    <span class="badge"><%
+											System.out.print(cards.getQuantity(set.get(i)));
+                    %></span>
                     <form method="post" action="${pageContext.request.contextPath}/UpdateUser" class="subtract-button">
                         <input type="hidden" name="action" value="add">
                         <input type="hidden" name="id" value=<%=id%>>

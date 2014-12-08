@@ -48,6 +48,7 @@ public class Linker extends HttpServlet {
         request.setAttribute("text", card.getText());
         request.setAttribute("power", card.getCardPower());
         request.setAttribute("imagePath", card.getCardImageLocation());
+        request.setAttribute("cardId", card.getId());
         
          request.getRequestDispatcher("/singleCardPage.jsp").forward(request, response);
     }

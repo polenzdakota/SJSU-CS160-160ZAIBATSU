@@ -4,9 +4,7 @@
  */
 package Controllers;
 
-import Models.Card;
-import Models.Queries;
-import Models.Users;
+import Models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
@@ -48,7 +46,7 @@ public class CreateUser extends HttpServlet {
         boolean canCreate = checkAndCreate(user, pass);
         if (canCreate) {
             ResultSet set = dbAccessor.collectionJoin(user);
-            ArrayList<Card> cardSet = dbAccessor.setCards(set);
+            CardSet cardSet = dbAccessor.getUserCollection(user);
             session.setAttribute("currentUser", user);
             session.setAttribute("userCards", cardSet);
             String url = request.getContextPath() + "/UserPage.jsp";
