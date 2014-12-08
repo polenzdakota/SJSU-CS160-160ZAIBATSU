@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Cards` (
   `card_power` VARCHAR(45) NULL,
   `card_toughness` VARCHAR(45) NULL,
   `card_loyalty` VARCHAR(45) NULL,
-  `card_image_location` VARCHAR(200) NULL,
+  `card_image_location` VARCHAR(220) NULL,
   PRIMARY KEY (`card_id`))
 ENGINE = InnoDB;
 

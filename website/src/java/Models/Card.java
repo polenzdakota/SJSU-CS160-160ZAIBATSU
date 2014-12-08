@@ -108,7 +108,7 @@ public class Card implements Serializable {
         return card_loyalty;
     }
 
-    public String getImageCardlocation() {
+    public String getCardImageLocation() {
         return card_image_location;
     }
 }

@@ -54,7 +54,7 @@
   			<div class="hello-world">
   				<div class="single-card-image">
    				 	<a href="#" class="cardpicture">
-   				 		<img src="Images/CardPictures/AjaniSteadfast.jpg" alt="AjaniSteadfast">
+   				 		<img src="${imagePath}" width="400px" height="581px">
     				</a>
     			</div>
     			<div class="single-card-text">
