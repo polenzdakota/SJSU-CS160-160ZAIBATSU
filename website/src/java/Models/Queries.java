@@ -143,7 +143,7 @@ public class Queries {
          return encryption;
      }
      
-    public boolean userExists(String username)throws SQLException{
+     public boolean userExists(String username)throws SQLException{
      String sql = "Select user_login_name from User where user_login_name = ?";
      p = con.connection.prepareStatement(sql);
      p.setString(1,username);
@@ -310,3 +310,4 @@ public class Queries {
    }
   
 }
+
