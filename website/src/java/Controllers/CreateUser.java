@@ -4,21 +4,26 @@
  */
 package Controllers;
 
+import Models.Card;
 import Models.Queries;
 import Models.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
+ * This class creates a user in the database
  *
- * @author cody
+ * @author 160 Zaibatsu
  */
 public class CreateUser extends HttpServlet {
 
@@ -37,18 +42,35 @@ public class CreateUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         Queries dbAccessor = new Queries();
+        HttpSession session = request.getSession();
         String user = (String) request.getAttribute("user");
         String pass = (String) request.getAttribute("pass");
         boolean canCreate = checkAndCreate(user, pass);
-        dbAccessor.closeData();
         if (canCreate) {
-            //Some action that leads to userpage
+            ResultSet set = dbAccessor.collectionJoin(user);
+            ArrayList<Card> cardSet = dbAccessor.setCards(set);
+            session.setAttribute("currentUser", user);
+            session.setAttribute("userCards", cardSet);
+            String url = request.getContextPath() + "/UserPage.jsp";
+            dbAccessor.closeData();
+            response.sendRedirect(url);
         } else {
-            //Error user already exist.
+            session.setAttribute("invalidFields", "User Already Exists");
+            String url = request.getContextPath() + "/HomePage.jsp";
+            dbAccessor.closeData();
+            response.sendRedirect(url);
         }
 
     }
 
+    /**
+     * Checks to see if a username exists then creates a user with that name
+     * if it does not.
+     * @param username The name provided
+     * @param pass The password provided
+     * @return false if the username already exists in our database
+     * @throws SQLException
+     */
     protected boolean checkAndCreate(String username, String pass) throws SQLException {
 
         if (dbAccessor.userExists(username)) {
