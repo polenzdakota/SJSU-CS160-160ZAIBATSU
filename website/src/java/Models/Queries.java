@@ -112,6 +112,7 @@ public class Queries {
     public void createUser(Users user) throws SQLException{
         String sql = "Insert into User(user_login_name,user_login_password) values (?,?)";
         p = con.connection.prepareStatement(sql);
+        
         p.setString(1, user.getUserName());
         p.setString(2, user.getUserPassWord());
         String username = user.getUserName();
