@@ -21,8 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * This class creates a user in the database
  *
- * @author cody
+ * @author 160 Zaibatsu
  */
 public class CreateUser extends HttpServlet {
 
@@ -56,11 +57,20 @@ public class CreateUser extends HttpServlet {
         } else {
             session.setAttribute("invalidFields", "User Already Exists");
             String url = request.getContextPath() + "/HomePage.jsp";
+            dbAccessor.closeData();
             response.sendRedirect(url);
         }
 
     }
 
+    /**
+     * Checks to see if a username exists then creates a user with that name
+     * if it does not.
+     * @param username The name provided
+     * @param pass The password provided
+     * @return false if the username already exists in our database
+     * @throws SQLException
+     */
     protected boolean checkAndCreate(String username, String pass) throws SQLException {
 
         if (dbAccessor.userExists(username)) {

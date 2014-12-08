@@ -17,8 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * This class will update the user's information and collections
  *
- * @author cody
+ * @author 160 Zaibatsu
  */
 public class UpdateUser extends HttpServlet {
 
@@ -37,17 +38,30 @@ public class UpdateUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-            session = request.getSession();
-            String action = (String) request.getAttribute("action");
-            
-            dbAccessor.closeData();
+        session = request.getSession();
+        String action = (String) request.getAttribute("action");
+
+        dbAccessor.closeData();
     }
 
+    /**
+     * Adds a card to the user's collection,
+     *
+     * @param cardId The id of the card to add
+     * @return true if the card is added
+     * @throws SQLException
+     */
     protected boolean addCardToCollection(int cardId) throws SQLException {
         dbAccessor.insert(cardId, (String) session.getAttribute("user"));
         return true;
     }
 
+    /**
+     * Deletes a card from the user's collection
+     *
+     * @param name the name of the card
+     * @return true if the card was deleted
+     */
     protected boolean deleteCardFromCollection(String name) {
         return false;
     }
