@@ -52,7 +52,7 @@ public class UpdateUser extends HttpServlet {
      * @throws SQLException
      */
     protected boolean addCardToCollection(int cardId) throws SQLException {
-        dbAccessor.insert(cardId, (String) session.getAttribute("user"));
+        dbAccessor.insertCollection(cardId, (String) session.getAttribute("user"));
         return true;
     }
 
