@@ -14,7 +14,7 @@
 
 .navbar-login {
 	padding: 30px;
-	padding-right: 5%;
+	padding-right: 20%;
 	
 }
 
@@ -29,7 +29,6 @@
 }
 
 .button_to_HomePage {
-	background-color: red;
 	width: 20%;
 }
 
@@ -40,6 +39,19 @@
 	border-color: #000000;
 	width:50%;
 	height:2%;
-	margin-top:6.5%;
+	margin-top:7%;
 	
+}	
+
+.username-text {
+	float: right;
+}
+
+.logout-button {
+	background-color: blue;
+	float: left;
+}
+
+.create-new-account {
+	padding-top: 5%;
 }
