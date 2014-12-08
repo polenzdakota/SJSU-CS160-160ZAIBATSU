@@ -54,9 +54,10 @@
   					<p><a class="create-account-form-text">Username:</a><input type="text" class="form-control" placeholder="Enter Username" name="user"></p>
   					<p><a class="create-account-form-text">Password:</a><input type="text" class="form-control" placeholder="Enter Password" name="pass"></p>
   					<p><a class="create-account-form-text">Verified Password:</a><input type="text" class="form-control" placeholder="Verify Password" name="newVerifiedPassword"></p>
+                             <button type="createAccount" class="custom-button btn btn-default label-success " name="createAccount">Create Account!</button>
                              </form>	
 			</div>
-			<button type="createAccount" class="custom-button btn btn-default label-success " name="createAccount">Create Account!</button>
+			
 
 		</div>
     

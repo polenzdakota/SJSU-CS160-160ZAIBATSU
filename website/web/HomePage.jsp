@@ -52,7 +52,7 @@
                                 <input type="text" class="form-control" placeholder="Username" name="username">
                                 <input type="text" class="form-control" placeholder="Password" name="password">
                             </div>
-                            <button type="login" class="custom-button btn btn-default label-success">Login</button>
+                            <button type="login" class="custom-button btn btn-default label-success what">Login</button>
 
                         </form>
                         
