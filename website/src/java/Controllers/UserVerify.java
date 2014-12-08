@@ -5,6 +5,7 @@ import Models.Queries;
 import Models.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,12 +37,11 @@ public class UserVerify extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         HttpSession session = request.getSession();
-
-        if (!checkUser(user) || !checkPass(user, pass)) {
+        if (checkUser(user) || !checkPass(user, pass)) {
             session.setAttribute("invalidFields", "Incorrect Username or Password");
             String url = request.getContextPath() + "/HomePage.jsp";
             //dbAccessor.closeData();
@@ -69,13 +69,14 @@ public class UserVerify extends HttpServlet {
      * @param pass the password provided
      * @return false if the password does not match the user
      */
-    protected boolean checkPass(String user, String pass) throws SQLException {
+    protected boolean checkPass(String user, String pass) throws SQLException, NoSuchAlgorithmException {
 
         if (pass.isEmpty()) {
             return false;
         }
-        String givenPass = dbAccessor.retrievePassword(user);
-        return (givenPass.equals(pass));
+        String hashed = dbAccessor.hashPassword(pass);
+        String dbPass = dbAccessor.retrievePassword(user);
+        return (hashed.equals(dbPass));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -92,7 +93,11 @@ public class UserVerify extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+                    try {
+                        processRequest(request, response);
+                    } catch (NoSuchAlgorithmException ex) {
+                        Logger.getLogger(UserVerify.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         } catch (SQLException ex) {
             Logger.getLogger(UserVerify.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -111,7 +116,11 @@ public class UserVerify extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+                    try {
+                        processRequest(request, response);
+                    } catch (NoSuchAlgorithmException ex) {
+                        Logger.getLogger(UserVerify.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         } catch (SQLException ex) {
             Logger.getLogger(UserVerify.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -9,6 +9,7 @@ import Models.Queries;
 import Models.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class CreateUser extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
         Queries dbAccessor = new Queries();
         HttpSession session = request.getSession();
         String user = (String) request.getParameter("user");
@@ -71,11 +72,12 @@ public class CreateUser extends HttpServlet {
      * @return false if the username already exists in our database
      * @throws SQLException
      */
-    protected boolean checkAndCreate(String username, String pass) throws SQLException {
+    protected boolean checkAndCreate(String username, String pass) throws SQLException, NoSuchAlgorithmException {
 
         if (dbAccessor.userExists(username)) {
             Users user = new Users(username);
-            user.setUserPassword(pass);
+            String hashed = dbAccessor.hashPassword(pass);
+            user.setUserPassword(hashed);
             dbAccessor.createUser(user);
             return true;
         } else {
@@ -97,7 +99,11 @@ public class CreateUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+                    try {
+                        processRequest(request, response);
+                    } catch (NoSuchAlgorithmException ex) {
+                        Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         } catch (SQLException ex) {
             Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -116,7 +122,11 @@ public class CreateUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+                    try {
+                        processRequest(request, response);
+                    } catch (NoSuchAlgorithmException ex) {
+                        Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         } catch (SQLException ex) {
             Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
