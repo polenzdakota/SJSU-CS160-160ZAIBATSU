@@ -14,8 +14,23 @@
 
 .navbar-login {
 	padding: 30px;
-	padding-right: 20%;
-	
+	z-index: 1;
+	padding-left: 0%;
+	margin-left: 46.5%;
+	width: 35%;
+}
+
+.create-account-form-nav {
+	float: left;
+	margin-right: -12%;
+	z-index: 2;
+	width: 5%;
+	padding-right: -5%;
+	margin-left: 80%;
+}
+
+.java-nav {
+	z-index: -1;
 }
 
 .custom-button{
@@ -54,4 +69,5 @@
 
 .create-new-account {
 	padding-top: 5%;
+	width: 10%;
 }

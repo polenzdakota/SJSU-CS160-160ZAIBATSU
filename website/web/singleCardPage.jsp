@@ -37,7 +37,7 @@
         	<img alt="Brand" src="Images/Hoardr_Icon.png">
       	</div>
 		<!-- Ebrima Bold is the font for the text on the image -->
-		<form action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
+		<form method="post" action="${pageContext.request.contextPath}/UserVerify" class="navbar-form navbar-login navbar-fixed-top" role="login" align="right">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Username" name="user_name">
 				<input type="text" class="form-control" placeholder="Password" name="password">

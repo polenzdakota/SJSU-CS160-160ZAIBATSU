@@ -40,47 +40,20 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Deck`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Deck` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Deck` (
-  `deck_id` INT NOT NULL,
-  `deck_card_id` INT NULL,
-  `deck_collection_id` INT NULL,
-  `card_is_in_collection` TINYINT(1) NULL,
-  PRIMARY KEY (`deck_id`),
-  INDEX `collection_id_idx` (`deck_collection_id` ASC),
-  INDEX `card_id_idx` (`deck_card_id` ASC),
-  CONSTRAINT `collection_id`
-    FOREIGN KEY (`deck_collection_id`)
-    REFERENCES `mydb`.`Collection` (`collection_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `card_id`
-    FOREIGN KEY (`deck_card_id`)
-    REFERENCES `mydb`.`Cards` (`card_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`UserDecks`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`UserDecks` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`UserDecks` (
-  `userdecks_id` INT NOT NULL,
-  `userdecks_deck_id` INT NULL,
-  PRIMARY KEY (`userdecks_id`),
-  INDEX `deck_id_idx` (`userdecks_deck_id` ASC),
-  CONSTRAINT `deck_id`
-    FOREIGN KEY (`userdecks_deck_id`)
-    REFERENCES `mydb`.`Deck` (`deck_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
+DROP TABLE IF EXISTS USERDECKS;
+CREATE TABLE IF NOT EXISTS USERDECKS
+(ENTRY INT NOT NULL AUTO_INCREMENT,
+USER_ID INT,
+DECKNAME VARCHAR(30),
+PRIMARY KEY(ENTRY),
+FOREIGN KEY (USER_ID) REFERENCES User(user_id)
+);
 -- -----------------------------------------------------
 -- Table `mydb`.`Collection`
 -- -----------------------------------------------------
