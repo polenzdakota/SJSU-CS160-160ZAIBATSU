@@ -86,7 +86,7 @@
                 <ul class="list-group">
 
                     <%
-												CardSet cards = (CardSet)session.getAttribute("userCards");
+			CardSet cards = (CardSet)session.getAttribute("userCards");
                         List<Card> set = cards.listCards();
                         String toPage = request.getContextPath() + "/Linker";
 

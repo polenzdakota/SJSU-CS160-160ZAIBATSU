@@ -62,8 +62,9 @@ public class UpdateUser extends HttpServlet {
      * @throws SQLException
      */
     protected boolean addCardToCollection(int cardId, int quantity) throws SQLException {
-        dbAccessor.addCards(cardId, (String) session.getAttribute("user"), quantity);
-        CardSet cardSet = dbAccessor.getUserCollection((String) session.getAttribute("user"));
+        String username = (String)session.getAttribute("currentUser");
+        dbAccessor.addCards(cardId, username, quantity);
+        CardSet cardSet = dbAccessor.getUserCollection(username);
         session.setAttribute("userCards", cardSet);
         return true;
     }
