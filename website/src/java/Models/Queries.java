@@ -308,6 +308,14 @@ public class Queries {
       }
 
    }
+   public void setConnection(){
+       con.setConnection();
+   }
+public void closeConnection() throws SQLException{
+       con.closeConnection();
+   }  
+
+
   
 }
 
