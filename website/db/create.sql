@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Cards` (
   `card_power` VARCHAR(45) NULL,
   `card_toughness` VARCHAR(45) NULL,
   `card_loyalty` VARCHAR(45) NULL,
-  `card_image_location` VARCHAR(45) NULL,
+  `card_image_location` VARCHAR(200) NULL,
   PRIMARY KEY (`card_id`))
 ENGINE = InnoDB;
 
@@ -127,14 +127,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`User` (
 ENGINE = InnoDB;
 
 DROP TRIGGER IF EXISTS AddCollection;
-DELIMITER // 
-CREATE TRIGGER AddCollection
-	AFTER INSERT ON User 
-	FOR EACH ROW 
-	BEGIN
-		INSERT INTO Collection (collection_id,collection_table) values (NEW.user_id,NEW.user_login_name);
-	END; //
-DELIMITER ;
+--DELIMITER // 
+--CREATE TRIGGER AddCollection
+--	AFTER INSERT ON User 
+--	FOR EACH ROW 
+--	BEGIN
+--		INSERT INTO Collection (collection_id,collection_table) values (NEW.user_id,NEW.user_login_name);
+--	END //
+--DELIMITER ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
