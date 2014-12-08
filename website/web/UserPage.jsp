@@ -26,7 +26,7 @@
         <title>User Home Page</title>
     </head>
     <body>	
-	<!--	<%
+		<%
             //Check for current user and sets user if currently loged in.
             //Redirects to home page if not logged in and attempted
             // to access page directly
@@ -37,12 +37,12 @@
                 currentUser = (String) session.getAttribute("user");
             }
         %>    
-    -->
+
     
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="HomePage.jsp">
+                    <a class="navbar-brand">
                         <div class="hoardr_icon">
                             <img alt="Brand" src="Images/Hoardr_Icon.png">
                         </div>
@@ -71,7 +71,6 @@
 					<ul class="nav nav-tabs nav-justified">
 						<li><a href="HomePage.jsp">Search</a></li>
 						<li><a href="ViewCollection.jsp">Collection</a></li>
-						<li><a href="HomePage.jsp">Decks</a></li>
 						<li><a href="HomePage.jsp">Account</a></li>
 					</ul>
 				</div>

@@ -32,7 +32,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="HomePage.jsp">
+                    <a class="navbar-brand">
                         <div class="hoardr_icon">
                             <img alt="Brand" src="Images/Hoardr_Icon.png">
                         </div>

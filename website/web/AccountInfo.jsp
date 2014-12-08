@@ -56,7 +56,7 @@
 					<ul class="nav nav-tabs nav-justified">
 						<li><a href="UserPage.jsp">Search</a></li>
 						<li><a href="ViewCollection.jsp">Collection</a></li>
-						<li><a href="AccountInfo.jsp">Account</a></li>
+						<li><a href="HomePage.jsp">Account</a></li>
 					</ul>
 				</div>
 			</div>
@@ -64,50 +64,26 @@
 		<!-- END Navbar -->
 		
 		
-		<!-- Start view collection page -->
-		<div class="view-collection-page">
-
+		<div class="account-info-page">	
 			<div class="panel panel-default view-collection-panel">
 				<!-- Statistics -->
   				<div class="panel-heading">
-   					<h3 class="panel-title">Collection Statistics</h3>
+   					<h3 class="panel-title">Account Information</h3>
   				</div>
   				<div class="panel-body">
     				<ul class="list-group">
-						<li class="list-group-item"> <b>Number of Cards:</b> ${numberOfCards}</li>
-    					<li class="list-group-item"> <b>Average Cost:</b> ${averageCost}</li>
-    					<li class="list-group-item"> <b>Colors:</b> ${color}</li>
+						<li class="list-group-item"> <b>Username</b> ${numberOfCards}</li>
+    					<li class="list-group-item"> <b>Password</b> ${averageCost}</li>
+    					<li class="list-group-item"> <b>How to play Magic:</b></li>
 					</ul>
   				</div>
 			</div>
-			
-			<div class="results">
-                <ul class="list-group">
-
-                   <%
-                    ArrayList<Card> set = (ArrayList<Card>)session.getAttribute("userCards");
-                        String toPage = request.getContextPath() + "/Linker";
-
-                        for (int i = 0; i < set.size(); i++) {
-                            int id = set.get(i).getId();
-                            out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success user-colection-list\">" + set.get(i).getName()); 
-                        %>
-
-        					<form method="post" action="${pageContext.request.contextPath}/LogOut" class="subtract-button">	
-            					<button type="subtract" class="custom-button btn btn-default label-danger">-</button>
-        					</form>
-                        	 <form method="post" action="${pageContext.request.contextPath}/LogOut" class="add-button">	
-            					<button type="add" class="custom-button btn btn-default label-success">+</button>
-        					</form>
-                                                </li></a>
-                      <% 
-                        }
-                    %>
-                </ul>
-            </div>
-			
 		</div>
-		<!-- End view collection page -->
+		
+		
+		
+		
+		
 		
 		
 		
