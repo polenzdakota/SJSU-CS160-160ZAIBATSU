@@ -147,20 +147,23 @@ public class Queries {
     
     }
     
-     public String hashPassword(String password) throws NoSuchAlgorithmException{
-         this.password = password + "hoardr";
-         MessageDigest hashpass = null; 
-         try{
-         hashpass = MessageDigest.getInstance("SHA-256");
-         }catch(NoSuchAlgorithmException e){
-             System.out.println("This algorithm doesn't exist " + e.getMessage());
-         }
-         hashpass.update(password.getBytes());
-         String encryption = new String(hashpass.digest());
-         
-         return encryption;
-     }
-     
+     public String hashPassword(String base) throws NoSuchAlgorithmException{
+    try{
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hash = digest.digest(base.getBytes("UTF-8"));
+        StringBuffer hexString = new StringBuffer();
+           
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
+        }
+
+        return hexString.toString();
+    } catch(Exception ex){
+       throw new RuntimeException(ex);
+    }
+}
      public boolean userExists(String username)throws SQLException{
      String sql = "Select user_login_name from User where user_login_name = ?";
      p = con.connection.prepareStatement(sql);

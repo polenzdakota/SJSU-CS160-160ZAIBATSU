@@ -326,6 +326,9 @@ public class Queries {
       }
 
    }
+	public void closeConnection() throws SQLException{
+       con.closeConnection();
+   }  
   
 }
 
