@@ -26,6 +26,16 @@ public class CardSet {
 		for(Map.Entry<Card, Integer> entry : cards.entrySet()) {
 			cardList.add(entry.getKey());
 		}
+		
+		Comparator<Card> comp = new Comparator<Card>() {
+			public int compare(Card a, Card b) {
+				return a.getName().compareTo(b.getName());
+			}
+			
+			public boolean equals(Object other) {return other == this;}
+		};
+		
+		Collections.sort(cardList, comp);
 		return cardList;
 	}
 
