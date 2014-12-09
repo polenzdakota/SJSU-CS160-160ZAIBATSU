@@ -95,7 +95,7 @@
                             out.print("<a href=\"" + toPage + "?index=" + id + "\">" + "<li class=\"list-group-item list-group-item-success user-colection-list\">" + set.get(i).getName());
                     %>
                     <span class="badge"><%
-											System.out.print(cards.getQuantity(set.get(i)));
+											out.print(cards.getQuantity(set.get(i)));
                     %></span>
                     <form method="post" action="${pageContext.request.contextPath}/UpdateUser" class="subtract-button">
                         <input type="hidden" name="action" value="add">

@@ -47,6 +47,11 @@ public class UpdateUser extends HttpServlet {
         String quantity = (String) request.getParameter("quantity");
         int id = Integer.parseInt(cardId);
         int intQuant = Integer.parseInt(quantity);
+        if (action.equals("add-card")) {
+					addCardToCollection(id, intQuant);
+					response.sendRedirect("ViewCollection.jsp");
+				}
+        /*
         if (action.equals("add")) {
             addCardToCollection(id, intQuant);
         } else if (action.equals("subtract")) {
@@ -58,6 +63,7 @@ public class UpdateUser extends HttpServlet {
         String url = request.getContextPath() + "/UserPage.jsp";
         dbAccessor.closeConnection();
         response.sendRedirect(url);
+        */
     }
 
     /**
