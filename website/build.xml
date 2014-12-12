@@ -12,6 +12,7 @@
 	<property name="db.dir" location="db"/>
   <property name="servlet-api" location="serv"/>
 	<property name="MYSQLDRIVER" location="sqlconnect1"/>
+	<property name="tomcat.dir" location="tomcat"/>
 	<!--<property name="MYSQLDRIVER"    value="/usr/share/java/mysql-connector-java.jar"/>-->
 	<!--
 	<property name="sql.driver" value="jdbc"/>
@@ -26,6 +27,7 @@
 	
 	<target name="clean-website">
 		<delete dir="${deploy.dir}"/>
+		<delete file="hoardr.war"/>
 	</target>
 	
 	<target name="clean-populate">
@@ -42,7 +44,7 @@
 	<target name="default" depends="compile,deploy"/>
 	
 	<target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${build.dir}" classpath="${servlet-api}"/>
+		<javac srcdir="${src}" destdir="${build.dir}/build" classpath="${servlet-api}"/>
 	</target>
 
 	<target name="database">
@@ -63,7 +65,7 @@
 			<fileset dir="${web.dir}"/>
 		</copy>
 		<copy file="${MYSQLDRIVER}" todir="${deploy.dir}/WEB-INF/lib"/>-->
-		<war destfile="hoardr.war">
+		<war destfile="${tomcat.dir}/hoardr.war">
 			<fileset dir="${web.dir}"/>
 			<classes dir="${build.dir}"/>
 		</war>
