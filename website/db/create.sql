@@ -100,14 +100,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`User` (
 ENGINE = InnoDB;
 
 DROP TRIGGER IF EXISTS AddCollection;
---DELIMITER // 
---CREATE TRIGGER AddCollection
---	AFTER INSERT ON User 
---	FOR EACH ROW 
---	BEGIN
---		INSERT INTO Collection (collection_id,collection_table) values (NEW.user_id,NEW.user_login_name);
---	END //
---DELIMITER ;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
