@@ -54,24 +54,6 @@ DECKNAME VARCHAR(30),
 PRIMARY KEY(ENTRY),
 FOREIGN KEY (USER_ID) REFERENCES User(user_id)
 );
--- -----------------------------------------------------
--- Table `mydb`.`Collection`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Collection` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`Collection` (
-  `collection_id` INT NOT NULL,
-  `collection_userdecks_id` INT NULL,
-	`collection_table` VARCHAR(40) NULL,
-  PRIMARY KEY (`collection_id`),
-  INDEX `userdecks_id_idx` (`collection_userdecks_id` ASC),
-  CONSTRAINT `userdecks_id`
-    FOREIGN KEY (`collection_userdecks_id`)
-    REFERENCES `mydb`.`UserDecks` (`userdecks_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`User`

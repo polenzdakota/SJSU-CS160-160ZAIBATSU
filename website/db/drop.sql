@@ -1,0 +1,1 @@
+drop mydb if exists;
