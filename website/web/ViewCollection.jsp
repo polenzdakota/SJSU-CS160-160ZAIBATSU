@@ -97,17 +97,17 @@
                     <span class="badge"><%
 											out.print(cards.getQuantity(set.get(i)));
                     %></span>
-                    <form method="post" action="${pageContext.request.contextPath}/UpdateUser" class="subtract-button">
+                    <form method="post" action="${pageContext.request.contextPath}/UpdateUser" class="add-button">
                         <input type="hidden" name="action" value="add-card">
                         <input type="hidden" name="id" value="<%out.print(id);%>">
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="custom-button btn btn-default label-danger">+</button>
+                        <button type="submit" class="custom-button btn btn-default label-success">+</button>
                     </form>
-                    <form method="post" action="${pageContext.request.contextPath}/UpdateUser" class="add-button">	
+                    <form method="post" action="${pageContext.request.contextPath}/UpdateUser" class="subtract-button">	
                         <input type="hidden" name="action" value="add-card">
                         <input type="hidden" name="quantity" value="-1">
                         <input type="hidden" name="id" value="<%out.print(id);%>">
-                        <button type="submit" class="custom-button btn btn-default label-success">-</button>
+                        <button type="submit" class="custom-button btn btn-default label-danger">-</button>
                     </form>
                     </li></a>
                     <%

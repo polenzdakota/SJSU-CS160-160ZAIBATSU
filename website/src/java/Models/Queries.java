@@ -270,7 +270,7 @@ public class Queries {
 			if (rs.next()) {
 				int quantity = rs.getInt("quantity");
 				if (quantity + delta > 0) {
-					sql = "UPDATE " + username + " SET quantity = " + (quantity + delta) + "WHERE card_id = " + cardId + ";";
+					sql = "UPDATE " + username + " SET quantity = " + (quantity + delta) + " WHERE card_id = " + cardId + ";";
 				} else {
 					sql = "DELETE FROM " + username + " WHERE card_id = " + cardId + ";";
 				}

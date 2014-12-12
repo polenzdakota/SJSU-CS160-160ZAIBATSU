@@ -89,7 +89,7 @@
                                     System.out.println(set);
                                 %>
                                 <li class="list-group-item"> <b>Name:</b> ${name}</li>
-                                <li class="list-group-item"> <b>Colors:</b> ${color}</li>
+                                <!-- <li class="list-group-item"> <b>Colors:</b> ${color}</li> -->
                                 <li class="list-group-item"> <b>Cost:</b> ${cost}</li>
                                 <li class="list-group-item"> <b>CMC:</b> ${cmc}</li>
                                 <li class="list-group-item"> <b>SuperTypes:</b> ${super_type}</li>

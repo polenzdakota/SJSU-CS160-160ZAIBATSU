@@ -7,6 +7,7 @@
 	<property name="src" location="src"/>
  <!--<property name="temp.dir" location="temp"/> -->
 	<property name="web.dir" location="web"/>
+	<property name="build.dir" location="build"/>
 	<property name="deploy.dir" location="webroot"/>
 	<property name="db.dir" location="db"/>
   <property name="servlet-api" location="serv"/>
@@ -41,7 +42,7 @@
 	<target name="default" depends="compile,deploy"/>
 	
 	<target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${deploy.dir}/WEB-INF/classes" classpath="${servlet-api}"/>
+		<javac srcdir="${src}" destdir="${build.dir}" classpath="${servlet-api}"/>
 	</target>
 
 	<target name="database">
@@ -58,9 +59,13 @@
   </target>
 
 	<target name="deploy" depends="database">
-		<copy todir="${deploy.dir}">
+		<!--<copy todir="${deploy.dir}">
 			<fileset dir="${web.dir}"/>
 		</copy>
-		<copy file="${MYSQLDRIVER}" todir="${deploy.dir}/WEB-INF/lib"/>
+		<copy file="${MYSQLDRIVER}" todir="${deploy.dir}/WEB-INF/lib"/>-->
+		<war destfile="hoardr.war">
+			<fileset dir="${web.dir}"/>
+			<classes dir="${build.dir}"/>
+		</war>
 	</target>
 </project>
