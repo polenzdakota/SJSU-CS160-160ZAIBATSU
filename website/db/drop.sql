@@ -1,1 +1,1 @@
-drop mydb if exists;
+drop DATABASE if exists mydb;
