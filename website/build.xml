@@ -1,8 +1,8 @@
 <project name="Hoardr" default="default" basedir=".">
 	<property file="build.properties" />	
 	
-	<property name="sql.user" value="hoardr"/>
-	<property name="sql.pass" value="zaibatsu"/>
+	<property name="sql.user" value="user"/>
+	<property name="sql.pass" value="pass"/>
 	
 	<property name="src" location="src"/>
  <!--<property name="temp.dir" location="temp"/> -->
@@ -10,7 +10,7 @@
 	<property name="build.dir" location="build"/>
 	<property name="deploy.dir" location="webroot"/>
 	<property name="db.dir" location="db"/>
-  <property name="servlet-api" location="serv"/>
+  <!--<property name="servlet-api" location="serv"/>-->
 	<property name="MYSQLDRIVER" location="sqlconnect1"/>
 	<property name="tomcat.dir" location="tomcat"/>
 	<!--<property name="MYSQLDRIVER"    value="/usr/share/java/mysql-connector-java.jar"/>-->
@@ -31,26 +31,27 @@
 	</target>
 	
 	<target name="clean-populate">
-		<delete file="${db.dir}/populate.sql"/>
+		<delete dir="${db.dir}/populate.sql"/>		
 	</target>
 	
 	<target name="clean" depends="clean-website,clean-populate"/>
 	
 	<target name="init" depends="clean-website">
-		<mkdir dir="${deploy.dir}/WEB-INF/classes"/>
-		<mkdir dir="${deploy.dir}/WEB-INF/lib"/>
+	
 	</target>
 
-	<target name="default" depends="compile,deploy"/>
+	<target name="default" depends="deploy"/>
+	<target name="deploy" depends="compile,war"/>
 	
 	<target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${build.dir}/build" classpath="${servlet-api}"/>
+		<javac srcdir="${src}" destdir="${build.dir}" classpath="${servlet-api}"/>
 	</target>
 
 	<target name="database">
   	<sql driver="${sql.driver}" url="${sql.url}" userid="${sql.user}" classpathref="CLASSPATH" password="${sql.pass}" >
   	<transaction src="${db.dir}/create.sql"/>
   	<transaction src="${db.dir}/populate.sql"/>
+		<transaction src="${db.dir}/sampledata.sql"/>
   	</sql>
   </target>
   
@@ -60,7 +61,7 @@
 		</exec>
   </target>
 
-	<target name="deploy" depends="database">
+	<target name="war" depends="database">
 		<!--<copy todir="${deploy.dir}">
 			<fileset dir="${web.dir}"/>
 		</copy>
@@ -69,5 +70,11 @@
 			<fileset dir="${web.dir}"/>
 			<classes dir="${build.dir}"/>
 		</war>
+	</target>
+	<target name="undeploy" depends= "clean">
+		<delete file="${tomcat.dir}/hoardr.war"/>
+		<sql driver="${sql.driver}" url="${sql.url}" userid="${sql.user}" classpathref="CLASSPATH" password="${sql.pass}" >
+  		<transaction src="${db.dir}/drop.sql"/>
+  	</sql>
 	</target>
 </project>
